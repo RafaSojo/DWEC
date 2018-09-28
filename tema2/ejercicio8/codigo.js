@@ -6,8 +6,9 @@
     Mostrar por pantalla el resultado devuelto por la función.
 */
 
-function parOImpar(numero){
-    return (numero % 2 == 0) ? "par" : "impar";
+{
+    function parOImpar(numero){
+        return (numero % 2 == 0) ? "par" : "impar";
+    }
+    alert(parOImpar(prompt("Introduce un número")))
 }
-
-alert(parOImpar(prompt("Introduce un número")))
