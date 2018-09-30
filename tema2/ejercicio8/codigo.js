@@ -7,8 +7,12 @@
 */
 
 {
+    window.addEventListener("load", init);
+
+    function init(){
+        document.getElementById('mensaje').textContent = parOImpar(prompt("Introduce un número"));
+    }
     function parOImpar(numero){
         return (numero % 2 == 0) ? "par" : "impar";
     }
-    alert(parOImpar(prompt("Introduce un número")))
 }

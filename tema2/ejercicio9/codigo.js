@@ -5,8 +5,11 @@
     determina si esa cadena está formada sólo por mayúsculas,
     sólo por minúsculas o por una mezcla de ambas.
 */
-
 {
+    window.addEventListener("load", init);
+    function init(){
+        document.getElementById('mensaje').textContent = infoTexto(prompt("Introduce una cadena:"));
+    }
     function infoTexto(texto){
         let mensaje = "La cadena " + texto;
         if(texto.toUpperCase() == texto)
@@ -16,5 +19,4 @@
         else
             return mensaje + " está formado por mayúsculas y minúsculas."
     }
-    alert(infoTexto(prompt("Introduce una cadena:")))
 }

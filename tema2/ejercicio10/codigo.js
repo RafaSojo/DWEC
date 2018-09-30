@@ -7,12 +7,9 @@
 */
 {
     function esPalidromo(frase){
-
-        let frase = eliminarCaracter(frase.toLowerCase(),' ');
-        fraseInvertida = reverseString(frase);
-        return (frase == fraseInvertida);
+        frase = eliminarCaracter(frase.toLowerCase(),' ');
+        return (frase == reverseString(frase));
     }
-
 
     function eliminarCaracter(frase, caracter){
         while(frase.indexOf(caracter) != -1)
@@ -20,23 +17,16 @@
         return frase;
     }
 
-
     // source -> https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb
     function reverseString(str) {
-        // Step 1. Create an empty string that will host the new created string
         let newString = "";
-    
-        // Step 2. Create the FOR loop
-        /* The starting point of the loop will be (str.length - 1) which corresponds to the 
-        last character of the string, "o"
-        As long as i is greater than or equals 0, the loop will go on
-        We decrement i after each iteration */
         for (var i = str.length - 1; i >= 0; i--) { 
-            newString += str[i]; // or newString = newString + str[i];
+            newString += str[i];
         }
-        // Step 3. Return the reversed string
-        return newString; // "olleh"
+        return newString;
     }
-
-    alert(esPalidromo(prompt("Introduce una frase:")));
+    window.addEventListener("load", init);
+    function init(){
+        document.getElementById('mensaje').textContent = "La frase "+((esPalidromo(prompt("Introduce una frase:")) == true) ? "si":"no" )+ " es un palídromo";
+    }
 }
