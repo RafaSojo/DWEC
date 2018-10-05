@@ -2,15 +2,11 @@
     window.addEventListener("load", init);
     function init(){
         let enlaces = document.getElementsByTagName('a');
-        for(i in enlaces) {
-          enlaces[i].onclick = muestraOculta;
-        }
+        for(i=0;i<enlaces.length;i++)
+          document.getElementById(enlaces[i].id).addEventListener('click', muestraOculta);        
     }
     function muestraOculta() {
-        let idEnlace = this.id;
-        let trozos = idEnlace.split('_');
-        let numero = trozos[1];
-        let parrafo = document.getElementById('contenidos_' + numero);
+        let parrafo = document.getElementById('contenidos_' + this.id);
         switch(parrafo.style.display) {
           case 'none':
             parrafo.style.display = 'block';
