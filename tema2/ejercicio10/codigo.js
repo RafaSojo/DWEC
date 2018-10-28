@@ -7,14 +7,8 @@
 */
 {
     function esPalidromo(frase){
-        frase = eliminarCaracter(frase.toLowerCase(),' ');
+        frase = frase.toLowerCase().replace(/ /g, "");
         return (frase == reverseString(frase));
-    }
-
-    function eliminarCaracter(frase, caracter){
-        while(frase.indexOf(caracter) != -1)
-            frase = frase.replace(caracter, '');
-        return frase;
     }
 
     // source -> https://medium.freecodecamp.org/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb

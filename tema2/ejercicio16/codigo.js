@@ -1,5 +1,7 @@
 {
   window.addEventListener('click', muestraClick);
+  const inicioMensaje = 'Se ha hecho click ';
+  let pMensaje = document.getElementById('mensaje');
 
   function muestraClick(e) {
     let posicionAA, posicionID;
@@ -13,7 +15,7 @@
     else
       posicionAA = 'abajo';
 
-    document.getElementById('mensaje').textContent = 'Se ha hecho click ' + posicionAA + ' ' + posicionID;
+      pMensaje.textContent = inicioMensaje + posicionAA + ' ' + posicionID;
 
   }
 
