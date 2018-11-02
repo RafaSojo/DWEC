@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+#enunciado{
+    background-color: #FF9800;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#explicacion{
+    background-color: #ff5656;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+    text-align: justify;
+}
+
+#resultado{
+    background-color: #cfcfcf;
+    padding: 20px;
+}
