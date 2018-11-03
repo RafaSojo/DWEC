@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Rafael Sojo">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <script src="ejercicio.js"></script>
+    <title>Comprobar DNI</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="enunciado">
+            <p>
+                Realiza la comprobación del dni.
+            </p>
+            <p>
+                Para ello, crea un formulario con tres campos: nombre, dni y fecha de nacimiento.
+            </p>
+            <p>
+                Al perder el foco de la caja de texto del DNI se realizará la comprobación. Aparecerá un mensaje
+                (Derecha o abajo) en rojo, indicando:
+            </p>
+
+            <ul>
+                <li>Formato incorrecto</li>
+                <li>Letra incorrecta</li>
+                <li>Introduce DNI (si está vacío)</li>
+            </ul>
+            <p>
+                Utiliza los grupos para capturar el número y la letra. La letra puede estar en mayúscula o minúscula,
+                separado o no por espacio/guión
+            </p>
+
+
+        </div>
+        <div>
+            <form action="#">
+                    Nombre: <input type="text" id="nombre">
+                    <br />
+                    DNI: <input type="text" id="dni"> <span id="errorDni" style="color:red"></span>
+                    <br />
+                    Fecha nacimiento: <input type="date" id="fnacimiento">
+                    <br />
+                    <input type="submit" value="Enviar">
+            </form>
+        </div>
+    </main>
+
+    <noscript>
+        Tu navegador no soporta JavaScript.
+    </noscript>
+
+</body>
+
+</html>
