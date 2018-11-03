@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Rafael Sojo">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <script src="ejercicio8.js"></script>
+    <title>Ejercicio 8</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="enunciado">Indica la diferencia entre los siguientes métodos, y demuestra su uso con algunos arrays:  Array.prototype.forEach(), Array.prototype.every(), Array.prototype.some() y Array.prototype.filter().</div>
+        <div id="explicacion">
+           <h2>Array.prototype.forEach()</h2>
+           <span>Esta función ejecuta la función que se le indica una vez por cada elemento que tenga el array.</span>
+           <h2>Array.prototype.every()</h2>
+           <span>Esta función devuelve un booleano si todos los elementos del array cumplen una condición implementada por la función dada.</span>
+           <h2>Array.prototype.some()</h2>
+           <span>Parecido al anterior pero devuelve True en caso de que al menos uno cumpla la condición.</span>
+           <h2>Array.prototype.filter()</h2>
+           <span>Crea un nuevo array con los elementos que cumplan la condición implementada por la condición dada.</span>
+        </div>
+        <pre id="resultado">
+Para ver la salida de las funciones abre la consola.
+
+----
+
+let ejemploArray1 = ["hola",1,2,3,NaN,"adios",undefined];
+ejemploArray1.forEach(muestraValor);
+
+let ejemploArray2 = [4,6,7,8,9,10];
+console.log("Every: "+ejemploArray2.every(masTres));
+console.log("Some: "+ejemploArray2.some(masSeis));
+console.log("Filter: "+ejemploArray2.filter(menosOcho));
+
+
+function muestraValor(valor){
+    console.log(valor);
+}
+
+function masTres(valor){
+    return valor > 3;
+}
+
+function masSeis(valor){
+    return valor > 6;
+}
+
+function menosOcho(valor){
+    return valor < 8;
+}
+            
+        </pre>
+    </main>
+
+    <noscript>
+        Tu navegador no soporta JavaScript.
+    </noscript>
+
+</body>
+
+</html>

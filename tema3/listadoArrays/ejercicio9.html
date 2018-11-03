@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Rafael Sojo">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <script src="ejercicio9.js"></script>
+    <title>Ejercicio 9</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="enunciado">Averigua qué método es el más eficiente para manejarse con arrays.  Compruébalo mediante performance.now() o similares
+            <ul>
+                <li>Introduce 100 elementos en un array mediante push(), unshift(), directamente, fijando tamaño en new Array...</li>
+                <li>Eliminar 100 elementos en un array mediante pop(), shift(), directamente, fijando tamaño...</li>
+            </ul>
+                
+                
+            </div>
+        <div id="explicacion">
+            En los ejemplos de a continuación creo un par de funciones para comprobar la velocidad de crear y añadir 1000 elementos a un array y también la de borrarlos
+        </div>
+        <pre id="resultado">
+Para ver la salida de las funciones abre la consola.
+
+----
+
+
+
+console.log("Crear array y añadir 1000 elementos con push tarda: "+mideVelocidad(function () {let array = [];for(let i=0;i&lt;1000;i++)array.push(i);return array}));
+console.log("Crear array y añadir 1000 elementos con unshift tarda: "+mideVelocidad(function () {let array = [];for(let i=0;i&lt;1000;i++)array.unshift(i);return array}));
+console.log("Crear array con el constructor con 1000 elementos: "+mideVelocidad(function () {return new Array(1000);}));
+
+console.log("Borrar 1000 elementos de un array con pop tarda: "+mideVelocidadBorrar("pop"));
+console.log("Borrar 1000 elementos de un array con shift tarda: "+mideVelocidadBorrar("shift"));
+console.log("Borrar 1000 elementos de un array cambiando el tamaño tarda: "+mideVelocidadBorrar("tamanio"));
+
+
+
+function mideVelocidad(funcion){
+    let tiempoInicio = performance.now();
+    funcion();
+    let tiempoFin = performance.now();
+    return tiempoFin - tiempoInicio;
+}
+
+function mideVelocidadBorrar(tipo){
+    let array = new Array(1000);
+    let tiempoInicio = performance.now();
+
+    switch(tipo){
+        case "pop":
+        for(let i=0;i&lt;1000;i++)
+        array.pop();
+        break;
+
+        case "shift":
+        array.shift();
+        break;
+
+        case "tamanio":
+        array.length = 0;
+        break;
+    }
+    let tiempoFin = performance.now();
+    return tiempoFin - tiempoInicio;
+}
+window.addEventListener("load", init);
+
+            
+        </pre>
+    </main>
+
+    <noscript>
+        Tu navegador no soporta JavaScript.
+    </noscript>
+
+</body>
+
+</html>

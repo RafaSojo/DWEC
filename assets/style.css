@@ -21,3 +21,8 @@
     background-color: #cfcfcf;
     padding: 20px;
 }
+
+#enunciado>ul{
+    text-align: left;
+    font-size: 0.9em;
+}
