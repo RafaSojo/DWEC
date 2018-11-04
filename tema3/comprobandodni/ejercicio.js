@@ -4,7 +4,6 @@
         document.getElementById('dni').addEventListener('focusout',comprobarDni);
     }
     
-    
     function comprobarDni(){
         let valor = this.value;
         
@@ -13,7 +12,7 @@
             return
         }
         
-        let regexSimple = /^([0-9]{8})([a-z])$/i;
+        let regexSimple = /^([0-9]{8})[ -]?([a-z])$/i;
         
         let resultado = regexSimple.exec(valor);
         
@@ -25,7 +24,7 @@
         let letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
         
         let letraCalculada = letras[parseInt(resultado[1]) % 23];
-        let letraTexto = valor.substring(8,9).toString();
+        let letraTexto = resultado[2];
         
         if(letraCalculada != letraTexto.toUpperCase()){
             mensajeAlerta('La letra del DNI no es correcta');
