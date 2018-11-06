@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Rafael Sojo">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <script src="ejercicio1.js"></script>
+    <title>Ejercicio 1 - Listado Regex</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="enunciado">
+            Indica las distintas formas de crear expresiones regulares.
+            </div>
+        <div id="explicacion">
+           Existen dos formas según el MDN; mediante barras <i>/expresion/modificadores</i> y mediante el constructor.
+        </div>
+        <pre id="resultado">
+Para ver la salida de las funciones abre la consola.
+
+----
+Mediante expresión corta:
+let re = /ab+c/;
+
+Mediante el constructor:
+re = new RegExp('ab+c');
+        </pre>
+    </main>
+
+    <noscript>
+        Tu navegador no soporta JavaScript.
+    </noscript>
+
+</body>
+
+</html>
