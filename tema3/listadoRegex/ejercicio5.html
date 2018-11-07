@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Rafael Sojo">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <script src="ejercicio5.js"></script>
+    <title>Ejercicio 5 - Listado Regex</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="enunciado">
+            Mediante ejemplos, indica valores y utilidad de index y lastIndex en una expresión regular. ¿Funciona en
+            todos los navegadores?
+        </div>
+        <div id="explicacion">
+            En todos los navegadores que he probado (Chrome, Edge y Firefox) sólo funciona <i>lastIndex</i> que
+            devuelve el último índice de la última coincidencia de la expresión regular.
+        </div>
+        <pre id="resultado">
+let re = /aa/i;
+let text = "111aa222aa333aa";
+re.exec(text);
+
+        </pre>
+    </main>
+
+    <noscript>
+        Tu navegador no soporta JavaScript.
+    </noscript>
+
+</body>
+
+</html>

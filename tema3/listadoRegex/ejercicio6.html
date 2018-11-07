@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Rafael Sojo">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <script src="ejercicio6.js"></script>
+    <title>Ejercicio 6 - Listado Regex</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="enunciado">
+            Mediante ejemplos, indica valores y utilidad de lastMatch en una expresión regular. ¿Funciona en todos los
+            navegadores?
+        </div>
+        <div id="explicacion">
+            Devuelve el texto de la última concidencia.
+        </div>
+        <pre id="resultado">
+let re = /(aa)/i;
+let text = "111aa222aa333aa";
+re.exec(text);
+
+        </pre>
+    </main>
+
+    <noscript>
+        Tu navegador no soporta JavaScript.
+    </noscript>
+
+</body>
+
+</html>
