@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Rafael Sojo">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <script src="ejercicio8.js"></script>
+    <title>Ejercicio 8 - Listado Date</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="enunciado">
+            Implementa el método esBisiesto() que devuelva si una fecha/año es bisiesto o no. En caso de que el argumento no sea una fecha, que salte una excepción. Admitirá tantos parámetros como el constructor Date(). Pruébalo con varias invocaciones fallidas (y capturadas)
+        </div>
+        <div id="explicacion">
+            La función le pasa todos los arguments a Date y hace unas operaciones para determinar si el año es bisiesto o no.
+        </div>
+        <pre id="resultado">
+            function esBisiesto(anio){
+                return (anio % 4 == 0) && ((anio % 100 != 0) || (anio % 400 == 0));
+             }
+        </pre>
+    </main>
+
+    <noscript>
+        Tu navegador no soporta JavaScript.
+    </noscript>
+
+</body>
+
+</html>

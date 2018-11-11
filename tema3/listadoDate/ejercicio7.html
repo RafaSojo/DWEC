@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Rafael Sojo">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <script src="ejercicio7.js"></script>
+    <title>Ejercicio 7 - Listado Date</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="enunciado">
+            Implementa el método diaDeLaSemana() que devuelva 'lunes, martes... domingo' del día actual o de la fecha indicada (similar al constructor)
+        </div>
+        <div id="explicacion">
+            La función coge todos los argumentos y se los pasa al constructor de Date para luego de éste coger el número del dia de la semana (empezando en 0) desde un array.
+        </div>
+        <pre id="resultado">
+function diaDeLaSemana(){
+    let dias=["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    let fecha = new Date(...arguments);
+    return dias[fecha.getUTCDay()];
+}
+        </pre>
+    </main>
+
+    <noscript>
+        Tu navegador no soporta JavaScript.
+    </noscript>
+
+</body>
+
+</html>

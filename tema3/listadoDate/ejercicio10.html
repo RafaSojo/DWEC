@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Rafael Sojo">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <script src="ejercicio10.js"></script>
+    <title>Ejercicio 10 - Listado Date</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="enunciado">
+            Implementa el método calcularHastaFinDeAnno() que devuelva los días que quedan hasta fin de año
+        </div>
+
+        <pre id="resultado">
+let calculateEndYear = function() {
+    let dateNow = new Date();
+    let dateNowMil = Date.now();
+    let date = Date.parse("December 31, " + dateNow.getFullYear());
+    let dias = dateNowMil - date;
+    return "Quedan " + Math.round((dias / 86400000) * -1) + " días para año nuevo";
+    };
+        </pre>
+    </main>
+
+    <noscript>
+        Tu navegador no soporta JavaScript.
+    </noscript>
+
+</body>
+
+</html>
