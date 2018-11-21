@@ -2,7 +2,7 @@
     var set = new Set();
     function init() {
         // Para ir para atrás
-        document.getElementById('atras').addEventListener('click', window.history.back);
+        document.getElementById('atras').addEventListener('click', irAtras);
 
         document.getElementById('nombreApellidos').addEventListener('blur', compruebaInput);
     }
@@ -55,6 +55,12 @@
 
     }
 
+
+    
+    function irAtras(event){
+        event.preventDefault()
+        window.history.back();
+    }
  
 
     window.addEventListener('load', init);

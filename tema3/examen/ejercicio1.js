@@ -38,7 +38,8 @@
         document.getElementById('mensaje').innerText = mensaje;
     }
 
-    function irAtras(){
+    function irAtras(event){
+        event.preventDefault()
         window.history.back();
     }
 
