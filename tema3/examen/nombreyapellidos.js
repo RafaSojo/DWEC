@@ -1,67 +1,52 @@
 {
-    var set = new Set();
+    let set = new Set();
+    const expresion = /^((?:[a-záéíóúñ]{1,})(?:[ ]{1,}(?:[a-záéíóúñ]{1,}))*)[ ]*,[ ]*([a-záéíóúñ]{1,})$/i;
+    let spanError, spanNombre, spanApellidos, inputTexto; 
+
     function init() {
         // Para ir para atrás
         document.getElementById('atras').addEventListener('click', irAtras);
 
-        document.getElementById('nombreApellidos').addEventListener('blur', compruebaInput);
+        spanError = document.getElementById('mensajeError');
+        spanNombre = document.getElementById('nombre');
+        spanApellidos = document.getElementById('apellidos');
+        inputTexto = document.getElementById('nombreApellidos');
+        
+        inputTexto.addEventListener('blur', compruebaInput);
     }
 
     function compruebaInput(){
-        let elementoNombre = document.getElementById('nombre');
-        let elementoApellidos = document.getElementById('apellidos');
-
-        // Resetear inputs
-        elementoNombre.innerText = "";
-        elementoApellidos.innerText = "";
-        const expresion = /([A-ZÁÉÍÓÚÑ ]+), ([A-ZÁÉÍÓÚÑ ]+)/i;
-
-        let nombre,apellidos;
-
-        let texto = document.getElementById('nombreApellidos').value;
-
-        let mensajeError = "";
         try{
-            if(expresion.test(texto) == false){
-                // lanzamos la excepcion
-                // raise Exception;
-                 mensajeError = "Error de formato";
+            let [nombre, apellidos] = extraeNombre(inputTexto.value);
+            let nombreYApellidos = nombre + " " + apellidos;
 
-            }
-            else{
+            if(set.has(nombreYApellidos))
+                throw new Error('REPETIDO');
+            
+            set.add(nombreYApellidos);
 
-                // TO-DO destructuring
-                resultados = expresion.exec(texto);
-                completo = resultados[0];
-                nombre = resultados[2];
-                apellidos = resultados[1];
-                if(set.has(completo) == true){
-        
-                    // lanzariamos exception
-                    mensajeError = "REPETIDO";
-                }else
-                {
-                    elementoNombre.innerText = nombre;
-                    elementoApellidos.innerText = apellidos;
-                    set.add(completo);
-                }
-            }
+            spanError.innerText = '';
+            spanNombre.innerText = nombre;
+            spanApellidos.innerText = apellidos;
+            inputTexto.value = '';
+        } catch(error){
+            spanError.innerText = error.message;
         }
-        catch{
-            mensajeError = "Error de formato";
-        }
-
-        document.getElementById('mensajeError').innerText = mensajeError;
-
     }
 
+    function extraeNombre(texto) {
+        try {
+            let [, apellidos, nombre] = expresion.exec(texto.trim());
+            return [nombre, apellidos.replace(/[ ]+/g, " ")];
+        } catch (error) {
+            throw new Error('Error. Formato correcto: Cuadrado Perfecto, Anacleto');
+        }
+    }
 
-    
     function irAtras(event){
         event.preventDefault()
         window.history.back();
     }
  
-
     window.addEventListener('load', init);
 }
