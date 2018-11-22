@@ -9,7 +9,7 @@
 
         document.getElementById('menu').innerHTML = `
     <ul>
-        <li><a href="#">Inicio</a></li>
+        <li><a href="https://rafasojo.github.io/DWEC/">Inicio</a></li>
         <li>
             <a href="tema2/index.html">Tema 2</a>
             <ul>
