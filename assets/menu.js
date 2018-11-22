@@ -54,6 +54,14 @@
                         <li><a href="tema3/listadoArrays/ejercicio9.html">Ejercicio 9</a></li>
                     </ul>
                 </li>
+                <li>
+                <a href="#">Listado Collections</a>
+                <ul>
+                    <li><a href="https://rafasojo.github.io/DWEC/tema3/listadoCollections/map.html">Map</a></li>
+                    <li><a href="https://rafasojo.github.io/DWEC/tema3/listadoCollections/set.html">Set</a></li>
+                    <li><a href="https://rafasojo.github.io/DWEC/tema3/listadoCollections/weakset.html">WeakSet</a></li>
+                </ul>
+            </li>
             </ul>
         </li>
     </ul>
