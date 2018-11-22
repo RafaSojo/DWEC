@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Rafael Sojo">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <script src="set.js"></script>
+    <title>Listado Collections</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="enunciado">
+                Entrega un código (debidamente comentado) donde demuestres los apartados del ejercicio anterior sobre la collection Map. Para ello utiliza como elementos los nombres y apellidos de cinco compañeros de clase.
+            </div>
+        <!-- <div id="explicacion">
+        </div> -->
+        <pre id="resultado">
+let alumno1 = "Antonio Jimenez Luque";
+let alumno2 = "Juan Mendez Nuñez";
+let alumno3 = "Pedro Garcia Aguado";
+let alumno4 = "Enrique Jurado Espada";
+let alumno5 = "Jose Lopez García";
+
+let set = new Set();
+set.add(alumno1);
+set.add(alumno2);
+set.add(alumno3);
+set.add(alumno4);
+set.add(alumno5);
+
+console.log(JSON.stringify(extraeValores(set.entries())));
+
+set.delete(alumno5);
+console.log(JSON.stringify(extraeValores(set.entries())));
+
+console.log(set.has('alumno1'));
+console.log(set.has(alumno1));
+console.log(set.size);
+
+function extraeValores(set) {
+    let array = [];
+    for (let [valor] of set)
+        array.push(valor);
+    return array;
+}
+        </pre>
+    </main>
+
+    <noscript>
+        Tu navegador no soporta JavaScript.
+    </noscript>
+
+</body>
+
+</html>
