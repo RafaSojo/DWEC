@@ -30,6 +30,7 @@
 #resultado{
     background-color: #cfcfcf;
     padding: 20px;
+    font-family: monospace;
 }
 
 #enunciado>ul{
