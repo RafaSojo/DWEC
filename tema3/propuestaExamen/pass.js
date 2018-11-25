@@ -17,34 +17,26 @@
         let puntuacion = 0;
 
         try {
-            if (clave.length < 8) {
+            if (clave.length < 8)
                 throw new Error("La clave tiene que tener mínimo 8 caracteres.")
-            }
 
-            if (expMayusculas.test(clave)) {
+            if (expMayusculas.test(clave))
                 puntuacion++;
-            }
-            if (expMinusculas.test(clave)) {
+            if (expMinusculas.test(clave))
                 puntuacion++;
-            }
-            if (expCaracteres.test(clave)) {
+            if (expCaracteres.test(clave))
                 puntuacion++;
-            }
-            if (expNumeros.test(clave)) {
+            if (expNumeros.test(clave))
                 puntuacion++;
-            }
             spanMensaje.innerText = `La contraseña tiene una puntuación de ${puntuacion} de 4`;
         } catch (error) {
             spanMensaje.innerText = error.message;
         }
-
-
     }
 
     function irAtras(event) {
         event.preventDefault()
         window.history.back();
     }
-
     window.addEventListener('load', init);
 }
