@@ -1,14 +1,9 @@
 {
-    const expMayusculas = /[A-Z]+/g;
-    const expMinusculas = /[a-z]+/g;
-    const expCaracteres = /[^a-zA-Z0-9]+/g;
-    const expNumeros = /[0-9]+/g;
     let spanMensaje;
-
     function init() {
         spanMensaje = document.getElementById('mensaje');
         document.getElementById('atras').addEventListener('click', irAtras);
-        document.getElementById('password').addEventListener('blur', compruebaClave);
+        document.getElementById('inputClave').addEventListener('blur', compruebaClave);
     }
 
     function compruebaClave() {
@@ -20,13 +15,13 @@
             if (clave.length < 8)
                 throw new Error("La clave tiene que tener mínimo 8 caracteres.")
 
-            if (expMayusculas.test(clave))
+            if (/[A-Z]/g.test(clave))
                 puntuacion++;
-            if (expMinusculas.test(clave))
+            if (/[a-z]/g.test(clave))
                 puntuacion++;
-            if (expCaracteres.test(clave))
+            if (/[^a-zA-Z0-9]/g.test(clave))
                 puntuacion++;
-            if (expNumeros.test(clave))
+            if ( /[0-9]/g.test(clave))
                 puntuacion++;
             spanMensaje.innerText = `La contraseña tiene una puntuación de ${puntuacion} de 4`;
         } catch (error) {

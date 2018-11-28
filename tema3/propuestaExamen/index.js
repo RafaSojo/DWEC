@@ -9,7 +9,7 @@
     }
 
     function abrir2(){
-        window.open('.html','_self');
+        window.open('tareas.html','_self');
     }
 
     window.addEventListener('load', init);
