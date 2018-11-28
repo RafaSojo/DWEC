@@ -1,0 +1,11 @@
+/* --------- CSS TEMPORAL ---------
+----------- TO-DO: Mejorar cuando esté funcionalidad implementada */
+#contenedorTablero{
+    /* width: 50vw; */
+    display: grid;
+    grid-template-columns: 200px;
+}
+
+input{
+    width: 30px;
+}
