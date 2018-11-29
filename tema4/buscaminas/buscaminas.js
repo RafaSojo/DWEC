@@ -9,30 +9,32 @@
         ancho: null,
         alto: null,
 
+        caracterMina: "*",
+
         // Función que inicializa todo el comportamiento del juego
-        iniciarJuego(nivel){
-            buscaminas.establecerParametros(nivel); // To-Do: establecerParametros() -> establece los campos para la configuración del juego en función del nivel
+        iniciarJuego(nivel) {
+            buscaminas.establecerParametros(nivel);
             buscaminas.generaTableroUI();
-            buscaminas.generarMinas(); // To-Do: generarMinas() -> Para generar las minas y añadirlas al tablero
+            buscaminas.generarMinas();
+            buscaminas.generarNumeros();
 
         },
 
         // Establece los parámetros para la configuración de juego
-        establecerParametros(nivel){
+        establecerParametros(nivel) {
             buscaminas.nivel = nivel;
-            if(nivel == 1){
+            if (nivel == 1) {
                 buscaminas.ancho = 10;
                 buscaminas.alto = 10;
-                buscaminas.numeroMinas = 6;
+                buscaminas.numeroMinas = 8;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
-            }else if(nivel == 2){
+            } else if (nivel == 2) {
                 // To-Do: ajustar nivel
                 buscaminas.ancho = 10;
                 buscaminas.alto = 10;
                 buscaminas.numeroMinas = 6;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
-            }
-            else{
+            } else {
                 // si lleva a este punto, no está bien puesto el nivel, salta excepcion
                 throw new Error('Nivel de dificultad indicado incorrecto');
             }
@@ -41,24 +43,60 @@
 
 
         // Genera y añade al tablero las minas 
-        generarMinas(){
+        generarMinas() {
             let minasColocadas = 0;
-            do{
+            do {
                 let casilla = buscaminas.getCasillaAleatoria();
-                if(casilla.value == 0){
-                    casilla.value = 9;
+                if (casilla.value == 0) {
+                    casilla.value = buscaminas.caracterMina;
                     minasColocadas++;
                 }
 
-            }while(minasColocadas<=buscaminas.numeroMinas);
+            } while (minasColocadas <= buscaminas.numeroMinas);
+        },
+
+
+        // Genera los números en función de las minas
+        generarNumeros() {
+            for (let ancho = 0; ancho < buscaminas.ancho; ancho++) {
+                for (let alto = 0; alto < buscaminas.alto; alto++) {
+                    let input = document.getElementById(ancho + '-' + alto);
+                    if (input.value == buscaminas.caracterMina)
+                        continue;
+                    let numeroMinas = 0;
+                    // ahora vamos recorriendo todas las casillas de alrededor y vemos si son minas para colocar el numero
+                    for(let i=-1;i<=1;i++){
+                        for(let j=-1;j<=1;j++){
+                            let elemento = document.getElementById((ancho+i)+'-'+(alto+j));
+                            // Comprobamos si nos hemos salido
+                            if(elemento != null && elemento.value == buscaminas.caracterMina)
+                            numeroMinas++;
+
+                        }
+                    }
+                    input.value = numeroMinas;
+
+
+
+                }
+            }
+        },
+
+        // Esta funcion se invoca cuando perdemos la partida. Deshabilita todos los inputs
+        perder() {
+            for (let ancho = 0; ancho < buscaminas.ancho; ancho++) {
+                for (let alto = 0; alto < buscaminas.alto; alto++) {
+                    document.getElementById(ancho + '-' + alto).disabled = true;
+                }
+            }
         },
 
 
         // Selecciona una casilla aleatoria
-        getCasillaAleatoria(){
+        getCasillaAleatoria() {
             let x = getRandomInt(0, buscaminas.ancho);
             let y = getRandomInt(0, buscaminas.alto);
-            return document.getElementById(x+'-'+y);
+            return document.getElementById(x + '-' + y);
         },
 
         // Genera la tabla de juego en html a partir de un tamaño
@@ -90,8 +128,13 @@
         // Se comprueba si está deshabilitada y si no, se hace la funcionalidad
         comprobarCasilla() {
             // Si está deshabilitado nos salimos
-            if(this.disabled == true)
+            if (this.disabled == true)
                 return;
+
+            // Comprobamos si es una mina
+            if (this.value == buscaminas.caracterMina)
+                buscaminas.perder();
+
             console.log(this);
         },
 
@@ -110,7 +153,7 @@
     // Fuente -> https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Math/random
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
-      }
+    }
 
     function init() {
         tableroJuego = document.getElementById("tableroJuego");
