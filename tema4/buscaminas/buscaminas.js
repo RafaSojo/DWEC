@@ -65,19 +65,15 @@
                         continue;
                     let numeroMinas = 0;
                     // ahora vamos recorriendo todas las casillas de alrededor y vemos si son minas para colocar el numero
-                    for(let i=-1;i<=1;i++){
-                        for(let j=-1;j<=1;j++){
-                            let elemento = document.getElementById((ancho+i)+'-'+(alto+j));
+                    for (let i = -1; i <= 1; i++) {
+                        for (let j = -1; j <= 1; j++) {
+                            let elemento = document.getElementById((ancho + i) + '-' + (alto + j));
                             // Comprobamos si nos hemos salido
-                            if(elemento != null && elemento.value == buscaminas.caracterMina)
-                            numeroMinas++;
-
+                            if (elemento != null && elemento.value == buscaminas.caracterMina)
+                                numeroMinas++;
                         }
                     }
                     input.value = numeroMinas;
-
-
-
                 }
             }
         },
@@ -86,7 +82,9 @@
         perder() {
             for (let ancho = 0; ancho < buscaminas.ancho; ancho++) {
                 for (let alto = 0; alto < buscaminas.alto; alto++) {
-                    document.getElementById(ancho + '-' + alto).disabled = true;
+                    let elemento = document.getElementById(ancho + '-' + alto)
+                    elemento.style = "background-color: #fff";
+                    elemento.disabled = true;
                 }
             }
         },
@@ -106,37 +104,60 @@
             for (let x = 0; x < buscaminas.ancho; x++) {
                 for (let y = 0; y < buscaminas.alto; y++) {
                     let celda = document.createElement("input");
+                    celda.style = "background-color: #000";
                     celda.id = x + "-" + y;
+                    celda.setAttribute('descubierto', false);
                     celda.value = "0";
                     celda.readOnly = "true";
-                    celda.addEventListener("click", buscaminas.comprobarCasilla);
+                    celda.addEventListener("click", buscaminas.comprobarCasillaCallBack);
                     tableroJuego.appendChild(celda);
                 }
             }
+        },
 
-            for (let k = 1; k <= buscaminas.ancho; k++)
-                for (let f = 1; f <= buscaminas.alto; f++)
-                    if (k % 2 === 0 && f % 2 === 0)
-                        buscaminas.obtenerValorCasilla(k - 1, f - 1).style.color = "#9CCC65";
-                    else if (k % 2 !== 0 && f % 2 !== 0)
-                buscaminas.obtenerValorCasilla(k - 1, f - 1).style.color = "#9CCC65";
 
+        comprobarCasillaCallBack() {
+            if (this.disabled == true || this.getAttribute('descubierto') == true)
+                return;
+
+            buscaminas.comprobarCasilla(this);
         },
 
 
         // Es cuando se hace click en una casilla
         // Se comprueba si está deshabilitada y si no, se hace la funcionalidad
-        comprobarCasilla() {
-            // Si está deshabilitado nos salimos
-            if (this.disabled == true)
-                return;
+        comprobarCasilla(elemento) {
+
+            elemento.style = "background-color: #fff";
+            elemento.setAttribute('descubierto', true);
 
             // Comprobamos si es una mina
-            if (this.value == buscaminas.caracterMina)
+            if (elemento.value == buscaminas.caracterMina)
                 buscaminas.perder();
 
-            console.log(this);
+            // Si el valor del campo es 0, descubre las casillas recursivamente
+            if (elemento.value == 0)
+                buscaminas.descubrirRecursivo(elemento.id);
         },
+
+
+        // Descubre recursivamente los elementos de alrededor si son 0
+        descubrirRecursivo(id) {
+            let ancho, alto;
+            [ancho, alto] = id.split('-');
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    let elemento = document.getElementById((parseInt(ancho) + i) + '-' + (parseInt(alto) + j));
+                    // Comprobamos si nos hemos salido
+                    if (elemento != null && elemento.value != buscaminas.caracterMina && elemento.getAttribute('descubierto') == 'false')
+                        buscaminas.comprobarCasilla(elemento);
+
+                }
+            }
+
+        },
+
+
 
         obtenerValorCasilla(x, y) {
             return {
