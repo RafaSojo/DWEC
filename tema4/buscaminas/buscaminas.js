@@ -26,15 +26,22 @@
             if (nivel == 1) {
                 buscaminas.ancho = 10;
                 buscaminas.alto = 10;
-                buscaminas.numeroMinas = 8;
+                buscaminas.numeroMinas = 16;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
             } else if (nivel == 2) {
                 // To-Do: ajustar nivel
-                buscaminas.ancho = 10;
-                buscaminas.alto = 10;
-                buscaminas.numeroMinas = 6;
+                buscaminas.ancho = 20;
+                buscaminas.alto = 20;
+                buscaminas.numeroMinas = 32;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
-            } else {
+            }  else if (nivel == 3) {
+                // To-Do: ajustar nivel
+                buscaminas.ancho = 30;
+                buscaminas.alto = 30;
+                buscaminas.numeroMinas = 60;
+                buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
+            } 
+            else {
                 // si lleva a este punto, no está bien puesto el nivel, salta excepcion
                 throw new Error('Nivel de dificultad indicado incorrecto');
             }
@@ -99,6 +106,7 @@
 
         // Genera la tabla de juego en html a partir de un tamaño
         generaTableroUI() {
+            tableroJuego.innerHTML = '';
             tableroJuego.style.display = "grid";
             tableroJuego.style.gridTemplateColumns = "repeat(" + buscaminas.ancho + ", 1fr)";
             for (let x = 0; x < buscaminas.ancho; x++) {
@@ -121,6 +129,7 @@
                 return;
 
             buscaminas.comprobarCasilla(this);
+            // To-Do -> buscaminas.comprobarGanar();
         },
 
 
@@ -176,9 +185,17 @@
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
+
+    // Wrappers para iniciar el juego
+    function iniciaJuego(){
+        buscaminas.iniciarJuego(this.value);
+    }
+
     function init() {
         tableroJuego = document.getElementById("tableroJuego");
-        buscaminas.iniciarJuego(1);
+        // buscaminas.iniciarJuego(1);
+
+        document.getElementById('iniciarJuego').addEventListener('change',iniciaJuego);
     }
 
     window.addEventListener('load', init);
