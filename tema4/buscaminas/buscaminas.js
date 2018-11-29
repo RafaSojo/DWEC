@@ -4,7 +4,7 @@
     let buscaminas = {
         nivel: null,
         terminado: false,
-        numeroBombas: null,
+        numeroMinas: null,
         numeroCasillas: null,
         ancho: null,
         alto: null,
@@ -17,15 +17,20 @@
 
         },
 
+        // Establece los parámetros para la configuración de juego
         establecerParametros(nivel){
             buscaminas.nivel = nivel;
             if(nivel == 1){
                 buscaminas.ancho = 10;
                 buscaminas.alto = 10;
+                buscaminas.numeroMinas = 6;
+                buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
             }else if(nivel == 2){
                 // To-Do: ajustar nivel
                 buscaminas.ancho = 10;
                 buscaminas.alto = 10;
+                buscaminas.numeroMinas = 6;
+                buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
             }
             else{
                 // si lleva a este punto, no está bien puesto el nivel, salta excepcion
@@ -33,6 +38,28 @@
             }
         },
 
+
+
+        // Genera y añade al tablero las minas 
+        generarMinas(){
+            let minasColocadas = 0;
+            do{
+                let casilla = buscaminas.getCasillaAleatoria();
+                if(casilla.value == 0){
+                    casilla.value = 9;
+                    minasColocadas++;
+                }
+
+            }while(minasColocadas<=buscaminas.numeroMinas);
+        },
+
+
+        // Selecciona una casilla aleatoria
+        getCasillaAleatoria(){
+            let x = getRandomInt(0, buscaminas.ancho);
+            let y = getRandomInt(0, buscaminas.alto);
+            return document.getElementById(x+'-'+y);
+        },
 
         // Genera la tabla de juego en html a partir de un tamaño
         generaTableroUI() {
@@ -49,8 +76,8 @@
                 }
             }
 
-            for (let k = 1; k <= casillasNivel; k++)
-                for (let f = 1; f <= casillasNivel; f++)
+            for (let k = 1; k <= buscaminas.ancho; k++)
+                for (let f = 1; f <= buscaminas.alto; f++)
                     if (k % 2 === 0 && f % 2 === 0)
                         buscaminas.obtenerValorCasilla(k - 1, f - 1).style.color = "#9CCC65";
                     else if (k % 2 !== 0 && f % 2 !== 0)
@@ -78,6 +105,12 @@
 
 
     }
+
+    // Función para generar int aleatorio entre dos valores
+    // Fuente -> https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Math/random
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
 
     function init() {
         tableroJuego = document.getElementById("tableroJuego");
