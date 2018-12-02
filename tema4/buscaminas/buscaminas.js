@@ -33,7 +33,7 @@
             if (nivel == 1) {
                 buscaminas.ancho = 10;
                 buscaminas.alto = 10;
-                buscaminas.numeroMinas = 1;
+                buscaminas.numeroMinas = 16;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
             } else if (nivel == 2) {
                 // To-Do: ajustar nivel
@@ -45,7 +45,7 @@
                 // To-Do: ajustar nivel
                 buscaminas.ancho = 30;
                 buscaminas.alto = 30;
-                buscaminas.numeroMinas = 60;
+                buscaminas.numeroMinas = 80;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
             } 
             else {
