@@ -1,6 +1,13 @@
 {
     let tableroJuego;
 
+    /*
+        Por hacer:
+            * Implementar banderitas (click derecho)
+            * Implementar sugerencias (ambos clicks)
+            * Cargar en memoria los campos para minimizar el acceso al DOM
+            * Mejor GUI
+    */
     let buscaminas = {
         nivel: null,
         terminado: false,
@@ -165,20 +172,9 @@
                     // Comprobamos si nos hemos salido
                     if (elemento != null && elemento.value != buscaminas.caracterMina && elemento.getAttribute('descubierto') == 'false')
                         buscaminas.comprobarCasilla(elemento);
-
                 }
             }
 
-        },
-
-
-
-        obtenerValorCasilla(x, y) {
-            return {
-                'style': {
-                    'color': 'foo'
-                }
-            };
         },
 
         // Función para comprobar las casillas que quedan por descubrir y las minas para comprobar cuando se ha ganado

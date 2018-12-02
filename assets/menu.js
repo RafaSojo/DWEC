@@ -64,6 +64,13 @@
             </li>
             </ul>
         </li>
+        <li>
+        <a href="#">Tema 4</a>
+        <ul>
+            <li><a href="tema4/buscaminas/index.html">Buscaminas</a></li>
+            <li><a href="tema4/gatito/index.html">Gatito</a></li>
+        </ul>
+    </li>
     </ul>
                 `;
     }
