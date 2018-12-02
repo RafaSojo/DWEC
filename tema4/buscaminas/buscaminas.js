@@ -26,7 +26,7 @@
             if (nivel == 1) {
                 buscaminas.ancho = 10;
                 buscaminas.alto = 10;
-                buscaminas.numeroMinas = 16;
+                buscaminas.numeroMinas = 1;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
             } else if (nivel == 2) {
                 // To-Do: ajustar nivel
@@ -59,7 +59,7 @@
                     minasColocadas++;
                 }
 
-            } while (minasColocadas <= buscaminas.numeroMinas);
+            } while (minasColocadas < buscaminas.numeroMinas);
         },
 
 
@@ -87,6 +87,11 @@
 
         // Esta funcion se invoca cuando perdemos la partida. Deshabilita todos los inputs
         perder() {
+           buscaminas.desactivarTablero();
+           alert('Has perdido!! :(');
+        },
+
+        desactivarTablero(){
             for (let ancho = 0; ancho < buscaminas.ancho; ancho++) {
                 for (let alto = 0; alto < buscaminas.alto; alto++) {
                     let elemento = document.getElementById(ancho + '-' + alto)
@@ -129,7 +134,7 @@
                 return;
 
             buscaminas.comprobarCasilla(this);
-            // To-Do -> buscaminas.comprobarGanar();
+           buscaminas.comprobarGanar();
         },
 
 
@@ -174,6 +179,28 @@
                     'color': 'foo'
                 }
             };
+        },
+
+        // Función para comprobar las casillas que quedan por descubrir y las minas para comprobar cuando se ha ganado
+        comprobarGanar(){
+            if(buscaminas.numeroMinas == buscaminas.casillasSinDescubrir())
+                buscaminas.ganar();
+        },
+
+        // To-Do: implementar el ganar
+        ganar(){
+           buscaminas.desactivarTablero();
+            alert('Has ganado!!');
+        },
+
+        // To-Do: implementar casillas sin descubrir
+        casillasSinDescubrir(){
+            let contador = 0;
+            for (let x = 0; x < buscaminas.ancho; x++) 
+                for (let y = 0; y < buscaminas.alto; y++)
+                    if(document.getElementById(x+'-'+y).getAttribute('descubierto') == 'true')
+                        contador++;
+            return contador;
         }
 
 
