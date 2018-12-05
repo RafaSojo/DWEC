@@ -7,6 +7,7 @@
             * Implementar sugerencias (ambos clicks)
             * Cargar en memoria los campos para minimizar el acceso al DOM
             * Mejor GUI
+            * Quitar eventListeners cuando se descubre
     */
     let buscaminas = {
         nivel: null,
@@ -92,11 +93,7 @@
             }
         },
 
-        // Esta funcion se invoca cuando perdemos la partida. Deshabilita todos los inputs
-        perder() {
-           buscaminas.desactivarTablero();
-           alert('Has perdido!! :(');
-        },
+
 
         desactivarTablero(){
             for (let ancho = 0; ancho < buscaminas.ancho; ancho++) {
@@ -183,11 +180,16 @@
                 buscaminas.ganar();
         },
 
-        // To-Do: implementar el ganar
-        ganar(){
+                // Esta funcion se invoca cuando ganamos la partida. Deshabilita todos los inputs
+                ganar(){
            buscaminas.desactivarTablero();
             alert('Has ganado!!');
         },
+                // Esta funcion se invoca cuando perdemos la partida. Deshabilita todos los inputs
+                perder() {
+                    buscaminas.desactivarTablero();
+                    alert('Has perdido!! :(');
+                 },
 
         // To-Do: implementar casillas sin descubrir
         casillasSinDescubrir(){
