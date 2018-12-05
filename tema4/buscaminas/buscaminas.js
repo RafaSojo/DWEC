@@ -25,28 +25,28 @@
             buscaminas.generaTableroUI();
             buscaminas.generarMinas();
             buscaminas.generarNumeros();
-
         },
 
         // Establece los parámetros para la configuración de juego
         establecerParametros(nivel) {
+            // Dificultad ajustada según Wikipedia https://es.wikipedia.org/wiki/Buscaminas
             buscaminas.nivel = nivel;
             if (nivel == 1) {
-                buscaminas.ancho = 10;
-                buscaminas.alto = 10;
-                buscaminas.numeroMinas = 16;
+                buscaminas.ancho = 8;
+                buscaminas.alto = 8;
+                buscaminas.numeroMinas = 10;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
             } else if (nivel == 2) {
                 // To-Do: ajustar nivel
-                buscaminas.ancho = 20;
-                buscaminas.alto = 20;
-                buscaminas.numeroMinas = 32;
+                buscaminas.ancho = 16;
+                buscaminas.alto = 16;
+                buscaminas.numeroMinas = 40;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
             }  else if (nivel == 3) {
                 // To-Do: ajustar nivel
-                buscaminas.ancho = 30;
+                buscaminas.ancho = 16;
                 buscaminas.alto = 30;
-                buscaminas.numeroMinas = 80;
+                buscaminas.numeroMinas = 99;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
             } 
             else {
@@ -73,9 +73,16 @@
 
         // Genera los números en función de las minas
         generarNumeros() {
-            for (let ancho = 0; ancho < buscaminas.ancho; ancho++) {
-                for (let alto = 0; alto < buscaminas.alto; alto++) {
+            for (let ancho = 0; ancho < buscaminas.alto; ancho++) {
+                for (let alto = 0; alto < buscaminas.ancho; alto++) {
                     let input = document.getElementById(ancho + '-' + alto);
+
+                    // DEBUG
+                    console.log("------------------------------------------");
+                    console.log(input);
+                    console.log("---");
+
+
                     if (input.value == buscaminas.caracterMina)
                         continue;
                     let numeroMinas = 0;
@@ -83,7 +90,11 @@
                     for (let i = -1; i <= 1; i++) {
                         for (let j = -1; j <= 1; j++) {
                             let elemento = document.getElementById((ancho + i) + '-' + (alto + j));
-                            // Comprobamos si nos hemos salido
+
+                            // DEBUG
+                            // console.log(elemento);
+
+
                             if (elemento != null && elemento.value == buscaminas.caracterMina)
                                 numeroMinas++;
                         }
@@ -108,8 +119,8 @@
 
         // Selecciona una casilla aleatoria
         getCasillaAleatoria() {
-            let x = getRandomInt(0, buscaminas.ancho);
-            let y = getRandomInt(0, buscaminas.alto);
+            let x = getRandomInt(0, buscaminas.alto);
+            let y = getRandomInt(0, buscaminas.ancho);
             return document.getElementById(x + '-' + y);
         },
 
@@ -118,8 +129,9 @@
             tableroJuego.innerHTML = '';
             tableroJuego.style.display = "grid";
             tableroJuego.style.gridTemplateColumns = "repeat(" + buscaminas.ancho + ", 1fr)";
-            for (let x = 0; x < buscaminas.ancho; x++) {
-                for (let y = 0; y < buscaminas.alto; y++) {
+            tableroJuego.style.gridTemplateRows = "repeat("+ buscaminas.alto +", 1fr)";
+            for (let x = 0; x < buscaminas.alto; x++) {
+                for (let y = 0; y < buscaminas.ancho; y++) {
                     let celda = document.createElement("input");
                     celda.style = "background-color: #000";
                     celda.id = x + "-" + y;
@@ -147,7 +159,7 @@
         comprobarCasilla(elemento) {
 
             elemento.style = "background-color: #fff";
-            elemento.setAttribute('descubierto', true);
+            elemento.setAttribute('descubierto', 'true');
 
             // Comprobamos si es una mina
             if (elemento.value == buscaminas.caracterMina)
@@ -163,13 +175,17 @@
         descubrirRecursivo(id) {
             let ancho, alto;
             [ancho, alto] = id.split('-');
-            for (let i = -1; i <= 1; i++) {
-                for (let j = -1; j <= 1; j++) {
-                    let elemento = document.getElementById((parseInt(ancho) + i) + '-' + (parseInt(alto) + j));
+            // for (let i = -1; i <= 1; i+=2) {
+            //     for (let j = -1; j <= 1; j+=2) {
+            let l1 =[0,-1,1,0];
+            let l2= [-1,0,0,1];
+                for(let i=0;i<l1.length;i++){
+                    let elemento = document.getElementById((parseInt(ancho) + l1[i]) + '-' + (parseInt(alto) + l2[i]));
+                    console.log(elemento);
                     // Comprobamos si nos hemos salido
-                    if (elemento != null && elemento.value != buscaminas.caracterMina && elemento.getAttribute('descubierto') == 'false')
+                    if (elemento != null && elemento.value != buscaminas.caracterMina && elemento.getAttribute('descubierto') == 'false' && elemento.value == '0')
                         buscaminas.comprobarCasilla(elemento);
-                }
+                
             }
 
         },
@@ -196,7 +212,7 @@
             let contador = 0;
             for (let x = 0; x < buscaminas.ancho; x++) 
                 for (let y = 0; y < buscaminas.alto; y++)
-                    if(document.getElementById(x+'-'+y).getAttribute('descubierto') == 'true')
+                    if(document.getElementById(y+'-'+x).getAttribute('descubierto') == 'true')
                         contador++;
             return contador;
         }

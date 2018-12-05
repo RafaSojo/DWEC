@@ -8,4 +8,20 @@
 
 input{
     width: 30px;
+    text-align: center;
 }
+
+#dificultad{
+    text-align: center;
+}
+
+input{
+    color:white; /* temporal para debug*/
+    width: 25px;
+    height: 25px;
+}
+
+/* 
+[descubierto="true"], :disabled{
+   background-color: #fff;
+} */
