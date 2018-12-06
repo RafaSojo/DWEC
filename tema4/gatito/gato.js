@@ -1,5 +1,5 @@
 {
-  let gato;
+  let gato, spanNombre, spanPeso, spanDurmiendo, spanFechaNacimiento, spanRaza;
 
   function init() {
     document.getElementById('optionComer').addEventListener('selected', comerGato);
