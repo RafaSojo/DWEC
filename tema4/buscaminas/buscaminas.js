@@ -16,6 +16,7 @@
         numeroCasillas: null,
         ancho: null,
         alto: null,
+        nivelTexto: null,
 
         caracterMina: "*",
 
@@ -32,18 +33,19 @@
             // Dificultad ajustada según Wikipedia https://es.wikipedia.org/wiki/Buscaminas
             buscaminas.nivel = nivel;
             if (nivel == 1) {
+                buscaminas.nivelTexto = 'Fácil';
                 buscaminas.ancho = 8;
                 buscaminas.alto = 8;
                 buscaminas.numeroMinas = 10;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
             } else if (nivel == 2) {
-                // To-Do: ajustar nivel
+                buscaminas.nivelTexto = 'Medio';
                 buscaminas.ancho = 16;
                 buscaminas.alto = 16;
                 buscaminas.numeroMinas = 40;
                 buscaminas.numeroCasillas = buscaminas.alto * buscaminas.ancho;
             }  else if (nivel == 3) {
-                // To-Do: ajustar nivel
+                buscaminas.nivelTexto = 'Difícil';
                 buscaminas.ancho = 16;
                 buscaminas.alto = 30;
                 buscaminas.numeroMinas = 99;
@@ -107,6 +109,7 @@
 
 
         desactivarTablero(){
+            clearInterval(idIntervalo);
             for (let ancho = 0; ancho < buscaminas.ancho; ancho++) {
                 for (let alto = 0; alto < buscaminas.alto; alto++) {
                     let elemento = document.getElementById(alto + '-' + ancho)
@@ -129,7 +132,11 @@
             tableroJuego.innerHTML = '';
             tableroJuego.style.display = "grid";
             tableroJuego.style.gridTemplateColumns = "repeat(" + buscaminas.ancho + ", 1fr)";
-            tableroJuego.style.gridTemplateRows = "repeat("+ buscaminas.alto +", 1fr)";
+            // tableroJuego.style.gridTemplateRows = "repeat("+ buscaminas.alto +", 1fr)";
+            document.getElementById('contenedorTablero').style = "display: inline-block;";
+            document.getElementById('spanDificultad').innerText = buscaminas.nivelTexto;
+            idIntervalo = setInterval(actualizarTiempo, 1000);
+            tiempo = 0;
             for (let x = 0; x < buscaminas.alto; x++) {
                 for (let y = 0; y < buscaminas.ancho; y++) {
                     let celda = document.createElement("input");
@@ -233,11 +240,16 @@
         buscaminas.iniciarJuego(this.value);
     }
 
+    // Función que actualiza el tiempo de partida
+    function actualizarTiempo(){
+        spanTiempo.innerText = tiempo++;
+    }
+
+    let spanTiempo,idIntervalo, tiempo;
     function init() {
         tableroJuego = document.getElementById("tableroJuego");
-        // buscaminas.iniciarJuego(1);
-
         document.getElementById('iniciarJuego').addEventListener('change',iniciaJuego);
+        spanTiempo = document.getElementById('spanTiempo');
     }
 
     window.addEventListener('load', init);
