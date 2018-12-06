@@ -16,7 +16,7 @@ input{
 }
 
 input{
-    color:white; /* temporal para debug*/
+    /* color:white; temporal para debug */
     width: 25px;
     height: 25px;
 }

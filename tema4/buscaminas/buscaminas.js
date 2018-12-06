@@ -78,9 +78,9 @@
                     let input = document.getElementById(ancho + '-' + alto);
 
                     // DEBUG
-                    console.log("------------------------------------------");
-                    console.log(input);
-                    console.log("---");
+                    // console.log("------------------------------------------");
+                    // console.log(input);
+                    // console.log("---");
 
 
                     if (input.value == buscaminas.caracterMina)
@@ -109,7 +109,7 @@
         desactivarTablero(){
             for (let ancho = 0; ancho < buscaminas.ancho; ancho++) {
                 for (let alto = 0; alto < buscaminas.alto; alto++) {
-                    let elemento = document.getElementById(ancho + '-' + alto)
+                    let elemento = document.getElementById(alto + '-' + ancho)
                     elemento.style = "background-color: #fff";
                     elemento.disabled = true;
                 }
@@ -166,7 +166,7 @@
                 buscaminas.perder();
 
             // Si el valor del campo es 0, descubre las casillas recursivamente
-            if (elemento.value == 0)
+            if (elemento.value == '0')
                 buscaminas.descubrirRecursivo(elemento.id);
         },
 
@@ -181,9 +181,9 @@
             let l2= [-1,0,0,1];
                 for(let i=0;i<l1.length;i++){
                     let elemento = document.getElementById((parseInt(ancho) + l1[i]) + '-' + (parseInt(alto) + l2[i]));
-                    console.log(elemento);
+                    // console.log(elemento);
                     // Comprobamos si nos hemos salido
-                    if (elemento != null && elemento.value != buscaminas.caracterMina && elemento.getAttribute('descubierto') == 'false' && elemento.value == '0')
+                    if (elemento != null && elemento.value != buscaminas.caracterMina && elemento.getAttribute('descubierto') == 'false')
                         buscaminas.comprobarCasilla(elemento);
                 
             }
@@ -212,8 +212,9 @@
             let contador = 0;
             for (let x = 0; x < buscaminas.ancho; x++) 
                 for (let y = 0; y < buscaminas.alto; y++)
-                    if(document.getElementById(y+'-'+x).getAttribute('descubierto') == 'true')
+                    if(document.getElementById(y+'-'+x).getAttribute('descubierto') == 'false')
                         contador++;
+            //console.log(contador);
             return contador;
         }
 
