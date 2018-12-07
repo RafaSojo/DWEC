@@ -1,12 +1,22 @@
 {
-  let gato, spanNombre, spanPeso, spanDurmiendo, spanFechaNacimiento, spanRaza;
+  let gato, spanPeso, spanDurmiendo;
 
   function init() {
-    document.getElementById('optionComer').addEventListener('selected', comerGato);
-    document.getElementById('optionJugar').addEventListener('selected', jugarGato);
-    document.getElementById('optionDormir').addEventListener('selected', dormirGato);
+    document.getElementById('optionComer').addEventListener('click', comerGato);
+    document.getElementById('optionJugar').addEventListener('click', jugarGato);
+    document.getElementById('optionDormir').addEventListener('click', dormirGato);
 
     gato = new Gato('Juan', '15/08/2018', 'Persa', 8);
+
+    // Cargamos span variables
+    spanPeso = document.getElementById('spanPeso');
+    spanDurmiendo = document.getElementById('spanDurmiendo');
+
+    document.getElementById('spanNombre').innerText = gato.nombre;
+    document.getElementById('spanFechaNacimiento').innerText = gato.fechaNacimiento;
+    document.getElementById('spanRaza').innerText = gato.raza;
+
+    mostrarNombreDurmiendo();
 
   }
 
@@ -28,20 +38,18 @@
   Gato.prototype.PESO_MINIMO = 2;
 
   Gato.prototype.comer = function () {
-    this.incrementarPeso();
-  };
-
-  Gato.prototype.incrementarPeso = function () {
     this.peso += 1;
-    if (peso > this.PESO_MAXIMO)
-      morir();
+    if (this.peso > this.PESO_MAXIMO)
+      this.morir();
   };
 
-  Gato.prototype.decrementarPeso = function () {
+  Gato.prototype.jugar = function () {
     this.peso -= 1;
-    if (peso < this.PESO_MINIMO)
-      morir();
-  }
+    if (this.peso < this.PESO_MINIMO)
+      this.morir();
+  };
+
+
 
   Gato.prototype.morir = function () {
     this.isVivo = false;
@@ -55,16 +63,25 @@
 
   function comerGato() {
     gato.comer();
+    mostrarNombreDurmiendo();
   }
 
   function jugarGato() {
     gato.jugar();
+    mostrarNombreDurmiendo();
   }
 
   function dormirGato() {
     gato.dormir();
+    mostrarNombreDurmiendo();
   }
 
 
-  window.addEventListener('click', init);
+  function mostrarNombreDurmiendo() {
+    spanDurmiendo.innerText = gato.isDurmiendo;
+    spanPeso.innerText = gato.peso;
+  }
+
+
+  window.addEventListener('load', init);
 }
