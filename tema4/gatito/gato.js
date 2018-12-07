@@ -6,7 +6,12 @@
     document.getElementById('optionJugar').addEventListener('click', jugarGato);
     document.getElementById('optionDormir').addEventListener('click', dormirGato);
 
-    gato = new Gato('Juan', '15/08/2018', 'Persa', 8);
+    // Nombres by -> http://www.mundoanimalia.com/nombres_de_gatos
+    let nombresGato = ['Tom', 'Kira', 'Simba', 'Felix', 'Coco', 'Silvestre'];
+
+    let razasGato = ['Persa', 'Ragdoll', 'Siamés', 'Abisinio', 'Bengala', 'Siberiano'];
+
+    gato = new Gato(nombresGato[Math.floor(Math.random() * nombresGato.length)], generateRandomNumber(1,30)+'/'+generateRandomNumber(1,12)+'/'+generateRandomNumber(2000,2018), razasGato[Math.floor(Math.random() * razasGato.length)], generateRandomNumber(4,12));
 
     // Cargamos span variables
     spanPeso = document.getElementById('spanPeso');
@@ -53,6 +58,7 @@
 
   Gato.prototype.morir = function () {
     this.isVivo = false;
+    document.getElementById('contenido').innerHTML = '<h1>El gato murió</h1><img src="http://worldartsme.com/images/dead-cat-clipart-1.jpg" alt="Gato muerto" />';
   };
 
   Gato.prototype.dormir = function () {
@@ -82,6 +88,9 @@
     spanPeso.innerText = gato.peso;
   }
 
+  function generateRandomNumber(min_value, max_value) {
+    return parseInt(Math.random() * (max_value - min_value) + min_value);
+  }
 
   window.addEventListener('load', init);
 }
