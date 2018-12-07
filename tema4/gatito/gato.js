@@ -1,5 +1,5 @@
 {
-  let gato, spanPeso, spanDurmiendo;
+  let gato, spanPeso, spanDurmiendo, imgGato;
 
   function init() {
     document.getElementById('optionComer').addEventListener('click', comerGato);
@@ -16,6 +16,7 @@
     // Cargamos span variables
     spanPeso = document.getElementById('spanPeso');
     spanDurmiendo = document.getElementById('spanDurmiendo');
+    imagenGato = document.getElementById('imagenGato');
 
     document.getElementById('spanNombre').innerText = gato.nombre;
     document.getElementById('spanFechaNacimiento').innerText = gato.fechaNacimiento;
@@ -38,7 +39,7 @@
   // Ahora empezamos a ponerle los campos y los métodos
 
   Gato.prototype.isVivo = true;
-  Gato.prototype.isDurmiendo = false;
+  // Gato.prototype.isDurmiendo = false;
   Gato.prototype.PESO_MAXIMO = 15;
   Gato.prototype.PESO_MINIMO = 2;
 
@@ -61,30 +62,33 @@
     document.getElementById('contenido').innerHTML = '<h1>El gato murió</h1><img src="http://worldartsme.com/images/dead-cat-clipart-1.jpg" alt="Gato muerto" />';
   };
 
-  Gato.prototype.dormir = function () {
-    this.isDurmiendo = true;
-  }
+  // Gato.prototype.dormir = function () {
+  //   this.isDurmiendo = true;
+  // }
 
 
 
   function comerGato() {
     gato.comer();
     mostrarNombreDurmiendo();
+    imagenGato.src = "https://www.gatosphera.com/wp-content/uploads/2013/10/que-come-gato.jpg";
   }
 
   function jugarGato() {
     gato.jugar();
     mostrarNombreDurmiendo();
+    imagenGato.src = "https://st2.depositphotos.com/4278641/6309/i/950/depositphotos_63096459-stock-photo-cat-playing-ball.jpg";
   }
 
   function dormirGato() {
-    gato.dormir();
+    // gato.dormir();
     mostrarNombreDurmiendo();
+    imagenGato.src = "https://sectorviral.com/wp-content/uploads/2018/05/gato-durmiendo.jpg";
   }
 
 
   function mostrarNombreDurmiendo() {
-    spanDurmiendo.innerText = gato.isDurmiendo;
+    // spanDurmiendo.innerText = gato.isDurmiendo;
     spanPeso.innerText = gato.peso;
   }
 
