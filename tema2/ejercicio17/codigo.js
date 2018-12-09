@@ -8,10 +8,11 @@
 
   const limiteCaracteres = 100;
 
-  function limita(e) {
+  function limita(event) {
     let elemento = document.getElementById("texto");
     if (elemento.value.length >= limiteCaracteres)
-      e.preventDefault();
+      event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+
   }
 
   function actualizaInfo() {
