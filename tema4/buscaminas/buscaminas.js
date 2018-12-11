@@ -79,12 +79,6 @@
                 for (let alto = 0; alto < buscaminas.ancho; alto++) {
                     let input = document.getElementById(ancho + '-' + alto);
 
-                    // DEBUG
-                    // console.log("------------------------------------------");
-                    // console.log(input);
-                    // console.log("---");
-
-
                     if (input.value == buscaminas.caracterMina)
                         continue;
                     let numeroMinas = 0;
@@ -92,11 +86,6 @@
                     for (let i = -1; i <= 1; i++) {
                         for (let j = -1; j <= 1; j++) {
                             let elemento = document.getElementById((ancho + i) + '-' + (alto + j));
-
-                            // DEBUG
-                            // console.log(elemento);
-
-
                             if (elemento != null && elemento.value == buscaminas.caracterMina)
                                 numeroMinas++;
                         }
@@ -184,15 +173,19 @@
             [ancho, alto] = id.split('-');
             // for (let i = -1; i <= 1; i+=2) {
             //     for (let j = -1; j <= 1; j+=2) {
-            let l1 =[0,-1,1,0];
-            let l2= [-1,0,0,1];
-                for(let i=0;i<l1.length;i++){
-                    let elemento = document.getElementById((parseInt(ancho) + l1[i]) + '-' + (parseInt(alto) + l2[i]));
+            // let l1 =[0,-1,1,0];
+            // let l2= [-1,0,0,1];
+            //     for(let i=0;i<l1.length;i++){
+            //         let elemento = document.getElementById((parseInt(ancho) + l1[i]) + '-' + (parseInt(alto) + l2[i]));
+            //         // console.log(elemento);
+            //         // Comprobamos si nos hemos salido
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    let elemento = document.getElementById((parseInt(ancho) + i) + '-' + (parseInt(alto) + j));
                     // console.log(elemento);
-                    // Comprobamos si nos hemos salido
                     if (elemento != null && elemento.value != buscaminas.caracterMina && elemento.getAttribute('descubierto') == 'false')
                         buscaminas.comprobarCasilla(elemento);
-                
+                }
             }
 
         },
