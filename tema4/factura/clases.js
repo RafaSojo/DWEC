@@ -39,3 +39,14 @@ Factura.prototype.incrementaId = function () {
     return this.id++;
 };
 
+// Factura.prototype.calculaTotal = function () {
+//     let arrayLineas = this.lineas;
+//     let total = 0;
+//     arrayLineas.forEach(element => {
+//         total += parseFloat(element.importe);
+//     });
+
+//     total += total * parseFloat(this.irpf / 100);
+//     total += total * parseFloat(this.re / 100);
+//     return total.toFixed(2);
+// };

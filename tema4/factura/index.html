@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,69 @@
     <script src="clases.js"></script>
     <script src="factura.js"></script>
 </head>
+
 <body>
     <main>
-      
-        
+        <div>
+            Fecha: <input type="date" id="fecha"> <br />
+            Moneda: <input type="text" id="moneda">
+        </div>
+        <div>
+            <h2>Empresa</h2>
+            Nombre: <input type="text" id="nombreEmpresa"> <br />
+            CIF: <input type="text" id="cifEmpresa"> <br />
+            Dirección: <input type="text" id="direccionEmpresa"> <br />
+            Email: <input type="text" id="emailEmpresa"> <br />
+            Teléfono: <input type="text" id="telefonoEmpresa"> <br />
+            <button id="guardarDatosEmpresa">Guardar</button>
+            <button id="limpiarDatosEmpresa">Limpiar datos</button>
+            <h2>Cliente</h2>
+            Nombre: <input type="text" id="nombreCliente"> <br />
+            CIF: <input type="text" id="cifCliente"> <br />
+            Dirección: <input type="text" id="direccionCliente"> <br />
+            Email: <input type="text" id="emailCliente"> <br />
+            Teléfono: <input type="text" id="telefonoCliente"> <br />
+            <button id="guardarDatosCliente">Guardar</button>
+            <button id="limpiarDatosCliente">Limpiar datos</button>
+        </div>
+
+        <div>
+            <h2>Crear linea:</h2>
+            <table>
+                <tr>
+                    <td>Producto</td>
+                    <td>Unidades</td>
+                    <td>Precio</td>
+                    <td>Iva</td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="nuevoProducto"></td>
+                    <td><input type="text" id="nuevoUnidades"></td>
+                    <td><input type="text" id="nuevoPrecio"></td>
+                    <td><input type="text" id="nuevoIVA"></td>
+                </tr>
+            </table>
+            <button id="nuevaLinea">Nueva linea</button>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td>Producto</td>
+                    <td>Unidades</td>
+                    <td>Descuento</td>
+                    <td>Precio</td>
+                    <td>Iva</td>
+                    <td>Importe</td>
+                </tr>
+            </table>
+            <hr>
+        </div>
+        <div>
+            <textarea id="observaciones" cols="30" rows="10"></textarea> <br />
+            <button>Crear factura</button>
+        </div>
+
     </main>
 </body>
+
 </html>
