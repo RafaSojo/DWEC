@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rafael Á. Sojo Ruíz</title>
+    <script src="reserva.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <meta author="Rafael Sojo">
+</head>
+
+<body>
+    <h1>Examen de Diciembre de 2018 - Rafael Á. Sojo Ruíz</h1>
+    <h2>Formulario de reservas</h2>
+    <p>
+        Bienvenido a la página de reservas de la casa rural "Mantita y Chimenea". Reservar con nosotros es fácil.
+        Completa este formulario de reserva. Le enviaremos un mail con la forma de pago. Recuerda efectuar el pago de
+        tu reserva. El plazo máximo es de 48 horas desde la fecha de reserva.
+    </p>
+    <p>
+        <form>
+            Nombre completo: <input type="text" id="nombre"> <span id="spanNombre"></span> <br />
+            Correo electrónico: <input type="text" id="email"> <span id="spanEmail"></span> <br />
+            Fecha de llegada: <input type="text" id="fecha"> <span id="spanFecha"></span><br />
+            Hora de llegada: <input type="text" id="hora"> <span id="spanHora"></span><br />
+            Número de noches: <input type="text" id="noches"> <span id="spanNoches"></span><br />
+            Número de personas: <input type="text" id="personas"> <span id="spanPersonas"></span><br />
+            Servicio de restaurante:<br />
+            <input type="checkbox" id="desayuno">Desayuno <br />
+            <input type="checkbox" id="almuerzo">Almuerzo<br />
+            <input type="checkbox" id="cena">Cena<br />
+            Edad del cliente: <br />
+            <span id="spanEdad"></span>
+            <br />
+            <input type="radio" name="edad" value="Menos de 20"> Menos de 20 <br />
+            <input type="radio" name="edad" value="Entre 20 y 40"> Entre 20 y 40 <br />
+            <input type="radio" name="edad" value="Más de 40"> Más de 40<br />
+            <button id="enviar">Enviar reserva</button>
+        </form>
+    </p>
+    <noscript>
+        Su navegador no soporta JavaScript.
+    </noscript>
+</body>
+
+</html>
