@@ -44,8 +44,6 @@
         event.preventDefault();
         let elementoFoco = false;
 
-        // resetearSpans();
-
         // Primero mostramos los errores
         if (!checkTerminos())
             elementoFoco = terminos;
@@ -82,7 +80,7 @@
         return false;
     }
 
-    function checkTelefono(){
+    function checkTelefono() {
         if (/^[67]{1}[0-9]{8}$/i.test(telefono.value)) {
             spanTelefono.innerText = "";
             return true;
@@ -91,7 +89,7 @@
         return false;
     }
 
-    function checkCuenta(){
+    function checkCuenta() {
         if (/^([0-4][1-9]|[5][0-2])([0-9][1-9][0]|[0-9]{2}[1-9])$/i.test(cuentaCorriente.value)) {
             spanCuentaCorriente.innerText = "";
             return true;
@@ -100,13 +98,13 @@
         return false;
     }
 
-    function checkWeb(){
-            if (/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test(web.value)) {
-                spanWeb.innerText = "";
-                return true;
-            }
-            spanWeb.innerText = "Dirección web inválida";
-            return false;
+    function checkWeb() {
+        if (/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test(web.value)) {
+            spanWeb.innerText = "";
+            return true;
+        }
+        spanWeb.innerText = "Dirección web inválida";
+        return false;
     }
 
     function checkNombre() {
@@ -122,7 +120,7 @@
         let comprobacion = /^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/i.exec(fechaNacimiento.value);
         if (comprobacion != null) {
             let fechaAComprobar = new Date(comprobacion[2] + "/" + comprobacion[1] + "/" + comprobacion[3]);
-            if(fechaAComprobar != "Invalid Date" && fechaAComprobar < new Date()){
+            if (fechaAComprobar != "Invalid Date" && fechaAComprobar < new Date()) {
                 spanFechaNacimiento.innerText = "";
                 return true;
             }
@@ -133,8 +131,8 @@
         return false;
     }
 
-    function checkTerminos(){
-        if(terminos.checked){
+    function checkTerminos() {
+        if (terminos.checked) {
             spanTerminos.innerText = "";
             return true;
         }
@@ -142,8 +140,8 @@
         return false;
     }
 
-    function checkDni(){
-        
+    function checkDni() {
+
         if (/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i.test(dni.value)) {
             spanDNI.innerText = "";
             return true;
