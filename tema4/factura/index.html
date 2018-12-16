@@ -15,23 +15,23 @@
     <main>
         <div>
             Fecha: <input type="date" id="fecha"> <br />
-            Moneda: <input type="text" id="moneda">
+            Moneda: <input type="text" id="moneda" value="Euros" disabled>
         </div>
         <div>
             <h2>Empresa</h2>
-            Nombre: <input type="text" id="nombreEmpresa"> <br />
-            CIF: <input type="text" id="cifEmpresa"> <br />
-            Dirección: <input type="text" id="direccionEmpresa"> <br />
-            Email: <input type="text" id="emailEmpresa"> <br />
-            Teléfono: <input type="text" id="telefonoEmpresa"> <br />
+            Nombre: <input type="text" id="nombreEmpresa" value="MiEmpresa S.L."> <br />
+            CIF: <input type="text" id="cifEmpresa" value="0000000-a"> <br />
+            Dirección: <input type="text" id="direccionEmpresa" value="C:/Windows"> <br />
+            Email: <input type="text" id="emailEmpresa" value="correo@miempresa.es"> <br />
+            Teléfono: <input type="text" id="telefonoEmpresa" value="987555661"> <br />
             <button id="guardarDatosEmpresa">Guardar</button>
             <button id="limpiarDatosEmpresa">Limpiar datos</button>
             <h2>Cliente</h2>
-            Nombre: <input type="text" id="nombreCliente"> <br />
-            CIF: <input type="text" id="cifCliente"> <br />
-            Dirección: <input type="text" id="direccionCliente"> <br />
-            Email: <input type="text" id="emailCliente"> <br />
-            Teléfono: <input type="text" id="telefonoCliente"> <br />
+            Nombre: <input type="text" id="nombreCliente" value="Pepito Perez"> <br />
+            CIF: <input type="text" id="cifCliente" value="11111111-a"> <br />
+            Dirección: <input type="text" id="direccionCliente" value="Calle sin número, 2"> <br />
+            Email: <input type="text" id="emailCliente" value="cliente@pepitoperez.es"> <br />
+            Teléfono: <input type="text" id="telefonoCliente" value="654712458"> <br />
             <button id="guardarDatosCliente">Guardar</button>
             <button id="limpiarDatosCliente">Limpiar datos</button>
         </div>
@@ -55,11 +55,10 @@
             <button id="nuevaLinea">Nueva linea</button>
         </div>
         <div>
-            <table>
+            <table id="tablaLineas">
                 <tr>
                     <td>Producto</td>
                     <td>Unidades</td>
-                    <td>Descuento</td>
                     <td>Precio</td>
                     <td>Iva</td>
                     <td>Importe</td>
@@ -68,8 +67,9 @@
             <hr>
         </div>
         <div>
+            Observaciones: <br />
             <textarea id="observaciones" cols="30" rows="10"></textarea> <br />
-            <button>Crear factura</button>
+            <button id="crearFactura">Crear factura</button>
         </div>
 
     </main>
