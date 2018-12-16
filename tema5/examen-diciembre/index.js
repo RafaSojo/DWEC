@@ -22,11 +22,9 @@
         spanHora = document.getElementById('spanHora');
         spanNoches = document.getElementById('spanNoches');
         spanPersonas = document.getElementById('spanPersonas');
-        // spanCena = document.getElementById('spanCena');
         spanEdad = document.getElementById('spanEdad');
 
         // Ponemos los listeners
-
         document.getElementById('enviar').addEventListener('click', comprobarFormulario);
         inputNombre.addEventListener('blur', checkNombre);
         inputEmail.addEventListener('blur', checkEmail);
@@ -34,9 +32,6 @@
         inputHora.addEventListener('blur', checkHora);
         inputNoches.addEventListener('blur', checkNoches);
         inputPersonas.addEventListener('blur', inputPersonas);
-        // inputsEdad.addEventListener('blur', checkEdad);
-
-
     }
 
     function comprobarFormulario(event) {
@@ -69,7 +64,23 @@
             inputPersonas.value, inputDesayuno.checked, inputAlmuerzo.checked, inputCena.checked, getEdad(inputsEdad));
 
         console.log(reserva); // ## DEBUG ##
+        reserva.mostrar();
+        resetInputs();
+    }
 
+    function resetInputs() {
+        inputNombre.value = "";
+        inputEmail.value = "";
+        inputFecha.value = "";
+        inputHora.value = "";
+        inputNoches.value = "";
+        inputPersonas.value = "";
+        inputDesayuno.checked = false;
+        inputAlmuerzo.checked = false;
+        inputCena.checked = false;
+        inputsEdad.forEach((e) => {
+            e.checked = false;
+        });
     }
 
     function checkEdad() {
@@ -112,7 +123,7 @@
         let comprobacion = /^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/i.exec(inputFecha.value);
         if (comprobacion != null) {
             let fechaAComprobar = new Date(comprobacion[2] + "/" + comprobacion[1] + "/" + comprobacion[3]);
-            if(fechaAComprobar != "Invalid Date" && fechaAComprobar > new Date()){
+            if (fechaAComprobar != "Invalid Date" && fechaAComprobar > new Date()) {
                 spanFecha.innerText = "";
                 return true;
             }
@@ -147,7 +158,6 @@
             if (elemento.checked)
                 return elemento.value;
     }
-
 
     window.addEventListener('load', init);
 }
