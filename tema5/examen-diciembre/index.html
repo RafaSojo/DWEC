@@ -22,22 +22,29 @@
     </p>
     <p>
         <form>
-            Nombre completo: <input type="text" id="nombre"> <span id="spanNombre"></span> <br />
-            Correo electrónico: <input type="text" id="email"> <span id="spanEmail"></span> <br />
-            Fecha de llegada: <input type="text" id="fecha"> <span id="spanFecha"></span><br />
-            Hora de llegada: <input type="text" id="hora"> <span id="spanHora"></span><br />
-            Número de noches: <input type="text" id="noches"> <span id="spanNoches"></span><br />
-            Número de personas: <input type="text" id="personas"> <span id="spanPersonas"></span><br />
-            Servicio de restaurante:<br />
-            <input type="checkbox" id="desayuno">Desayuno <br />
-            <input type="checkbox" id="almuerzo">Almuerzo<br />
-            <input type="checkbox" id="cena">Cena<br />
-            Edad del cliente: <br />
-            <span id="spanEdad"></span>
+            <!-- Datos de prueba -->
+            Nombre completo: <input type="text" id="nombre" value="Juan Rodriguez"> <span id="spanNombre"></span> <br />
+            Correo electrónico: <input type="text" id="email" value="hola@hotmail.com"> <span id="spanEmail"></span> <br />
+            Fecha de llegada: <input type="text" id="fecha" value="28/12/2018"> <span id="spanFecha"></span><br />
+            Hora de llegada: <input type="time" id="hora" value="10:45"> <span id="spanHora"></span><br />
+            Número de noches: <input type="number" id="noches" value="3"> <span id="spanNoches"></span><br />
+            Número de personas: <input type="number" id="personas" value="1"> <span id="spanPersonas"></span><br />
+            <fieldset>
+                <legend> Servicio de restaurante:</legend>
+
+                <input type="checkbox" id="desayuno"> <label for="desayuno">Desayuno</label> <br />
+                <input type="checkbox" id="almuerzo"> <label for="almuerzo">Almuerzo</label> <br />
+                <input type="checkbox" id="cena"> <label for="cena">Cena</label> <br />
+            </fieldset>
+            <fieldset>
+                <legend>Edad del cliente:</legend>
+                <span id="spanEdad"></span>
+                <br />
+                <input type="radio" name="edad" value="Menos de 20" id="edad1"> <label for="edad1">Menos de 20</label> <br />
+                <input type="radio" name="edad" value="Entre 20 y 40" id="edad2"> <label for="edad2">Entre 20 y 40</label> <br />
+                <input type="radio" name="edad" value="Más de 40" id="edad3"> <label for="edad3">Más de 40</label> 
+            </fieldset>
             <br />
-            <input type="radio" name="edad" value="Menos de 20"> Menos de 20 <br />
-            <input type="radio" name="edad" value="Entre 20 y 40"> Entre 20 y 40 <br />
-            <input type="radio" name="edad" value="Más de 40"> Más de 40<br />
             <button id="enviar">Enviar reserva</button>
         </form>
     </p>
