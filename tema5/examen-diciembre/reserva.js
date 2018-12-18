@@ -3,49 +3,104 @@
         this.id = Reserva.id++;
         this.nombre = Reserva.checkNombre(nombre);
         this.email = Reserva.checkEmail(email);
-        this.fecha = fecha;
-        this.hora = hora;
-        this.noches = noches;
-        this.personas = personas;
+        this.fecha = Reserva.checkFecha(fecha);
+        this.hora = Reserva.checkHora(hora);
+        this.noches = Reserva.checkNoches(noches);
+        this.personas = Reserva.checkPersonas(personas);
         this.desayuno = desayuno;
         this.almuerzo = almuerzo;
         this.cena = cena;
-        this.edad = edad;
-        this.diasRestantes = Reserva.calcularDiasRestantes(fecha);
+        this.edad = Reserva.checkEdad(edad);
+        this.diasRestantes = Reserva.calcularDiasRestantes(this.fecha);
     }
 
     // Primer id
     Reserva.id = 0;
 
+    // En esta función como está diseñado requiere que se le pasen varios inputs (los de name edad) como entrada
+    Reserva.checkEdad = function (edad) {
+        if (edad == undefined)
+            throw new Error("Tienes que seleccionar una edad");
+        return edad;
+    }
+
+
+    Reserva.checkNoches = function (noches) {
+        // Para controlar si se introduce un input o una cadena de texto
+        if (noches.value != undefined)
+            noches = noches.value;
+
+        if (parseInt(noches) <= 0)
+            throw new Error("Tienes que introducir un número positivo");
+        return parseInt(noches);
+    }
+
+    Reserva.checkPersonas = function (personas) {
+        // Para controlar si se introduce un input o una cadena de texto
+        if (personas.value != undefined)
+            personas = email.value;
+
+        if (parseInt(personas) <= 0)
+            throw new Error("Tienes que introducir un número positivo");
+        return parseInt(personas);
+    }
+
     Reserva.checkNombre = function (nombre) {
+        // Para controlar si se introduce un input o una cadena de texto
+        if (nombre.value != undefined)
+            nombre = nombre.value;
+
         if (nombre.length < 1)
             throw new Error("El nombre no es válido");
         return nombre;
     }
 
     Reserva.checkEmail = function (email) {
-        if (!/^([a-z]+@[a-z]+\.[a-z]{2,9})$/i.test(email))
+        // Para controlar si se introduce un input o una cadena de texto
+        if (email.value != undefined)
+            email = email.value;
+
+        if (!/^([a-z0-9]+@[a-z]+\.[a-z]{2,9})$/i.test(email))
             throw new Error("El email no es válido");
         return email;
     }
 
-    // To-Do: revisar
-    Reserva.checkFecha = function (fecha){
-        let comprobacion = /^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/i.exec(inputFecha.value);
-        if (comprobacion != null) {
-            let fechaAComprobar = new Date(comprobacion[2] + "/" + comprobacion[1] + "/" + comprobacion[3]);
-            if (fechaAComprobar != "Invalid Date" && fechaAComprobar > new Date()) {
-                return true;
-            }
-            return false;
+
+    Reserva.checkHora = function (hora) {
+        // Para controlar si se introduce un input o una cadena de texto
+        if (hora.value != undefined)
+            hora = hora.value;
+
+        if (!/^[0-9]{2}:[0-9]{2}$/i.test(hora))
+            throw new Error("La hora no es válida");
+        return hora;
+    }
+
+    Reserva.checkFecha = function (fecha) {
+        // Para controlar si se introduce un input o una cadena de texto
+        if (fecha.value != undefined)
+            fecha = fecha.value;
+
+        let dia, mes, anio;
+        try {
+            [, dia, mes, anio] = /^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/i.exec(fecha);
+        } catch {
+            throw new Error("Formáto de fecha no válida");
         }
-        return false;
+        let fechaAComprobar = new Date(mes + "/" + dia + "/" + anio);
+        if (fechaAComprobar == "Invalid Date")
+            throw new Error("Números de fecha inválidos");
+        if (fechaAComprobar < new Date())
+            throw new Error("La fecha no puede ser del pasado");
+        return fecha;
+
+
     }
 
     Reserva.calcularDiasRestantes = function (fecha) {
         let fechaArray = fecha.split('/');
         let fechaActual = Date.now();
-        let fechaLlegada = Date.parse(fechaArray[1]+'/'+fechaArray[0]+'/'+fechaArray[2]);
+        let fechaLlegada = Date.parse(fechaArray[1] + '/' + fechaArray[0] + '/' + fechaArray[2]);
         let fechaRestante = fechaLlegada - fechaActual;
         let diasSinTruncar = fechaRestante / 1000 / 60 / 60 / 24;
         let dias = Math.trunc(fechaRestante / 1000 / 60 / 60 / 24);
@@ -94,4 +149,12 @@
         ventana.document.write(html);
         ventana.document.close();
     }
+}
+
+
+// Para obtener el valor del radio button marcado
+function getEdad(inputs) {
+    for (const elemento of inputs)
+        if (elemento.checked)
+            return elemento.value;
 }
