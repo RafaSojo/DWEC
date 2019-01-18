@@ -26,44 +26,59 @@
 
         // Ponemos los listeners
         document.getElementById('enviar').addEventListener('click', comprobarFormulario);
-        // inputNombre.addEventListener('blur', checkNombre);
+        // inputNombre.addEventListener('blur', testing.bind(undefined, 1, 2, 3, 4));
         // inputEmail.addEventListener('blur', checkEmail);
         // inputFecha.addEventListener('blur', checkFecha);
         // inputHora.addEventListener('blur', checkHora);
         // inputNoches.addEventListener('blur', checkNoches);
         // inputPersonas.addEventListener('blur', inputPersonas);
 
-        estructura = [
-            [inputsEdad, spanEdad, Reserva.checkEdad],
-            [inputPersonas, spanPersonas, Reserva.checkPersonas],
-            [inputNoches, spanNoches, Reserva.checkNoches],
-            [inputHora, spanHora, Reserva.checkHora],
-            [inputFecha, spanFecha, Reserva.checkFecha],
-            [inputEmail, spanEmail, Reserva.checkEmail],
-            [inputNombre, spanNombre, Reserva.checkNombre]
-        ]
+        // estructura = [
+        //     [inputsEdad, spanEdad, Reserva.checkEdad],
+        //     [inputPersonas, spanPersonas, Reserva.checkPersonas],
+        //     [inputNoches, spanNoches, Reserva.checkNoches],
+        //     [inputHora, spanHora, Reserva.checkHora],
+        //     [inputFecha, spanFecha, Reserva.checkFecha],
+        //     [inputEmail, spanEmail, Reserva.checkEmail],
+        //     [inputNombre, spanNombre, Reserva.checkNombre]
+        // ]
+ 
+        // inputNombre.addEventListener('blur', testing.bind(undefined, 1, 2, 3, 4));
+        inputNombre.addEventListener('blur', Reserva.comprobarNombre.bind(inputNombre, spanNombre));
+        // inputEmail.addEventListener('blur', checkEmail);
+        // inputFecha.addEventListener('blur', checkFecha);
+        // inputHora.addEventListener('blur', checkHora);
+        // inputNoches.addEventListener('blur', checkNoches);
+        // inputPersonas.addEventListener('blur', inputPersonas);
 
 
     }
+
+    // function testing(hola1, hola2, hola3, hola4){
+    //     console.log(hola1);
+    //     console.log(hola2);
+    //     console.log(hola3);
+    //     console.log(hola4);
+    // }
 
     function comprobarFormulario(event) {
         event.preventDefault();
         let elementoFoco = false;
 
-        estructura.forEach(element => {
-            // console.log(element);
-            try {
-                element[2](element[0]);
-            } catch (error) {
-                // console.log(error);
-                element[1].innerText = error;
-                if (element[1] === estructura[0][1])
-                    elementoFoco = element[0][0];
-                else
-                    elementoFoco = element[0];
-            }
+        // estructura.forEach(element => {
+        //     // console.log(element);
+        //     try {
+        //         element[2](element[0]);
+        //     } catch (error) {
+        //         // console.log(error);
+        //         element[1].innerText = error;
+        //         if (element[1] === estructura[0][1])
+        //             elementoFoco = element[0][0];
+        //         else
+        //             elementoFoco = element[0];
+        //     }
 
-        });
+        // });
 
         // En caso de error mostramos el foco, si no, todo ha ido correcto y creamos el objeto
         if (elementoFoco != false) {

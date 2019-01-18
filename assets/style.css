@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-*{
+* {
     font-family: sans-serif;
     list-style: none;
     text-decoration: none;
@@ -9,7 +9,7 @@
 }
 
 
-#enunciado{
+#enunciado {
     background-color: #FF9800;
     padding: 20px;
     font-family: 'Roboto', sans-serif;
@@ -19,28 +19,32 @@
     margin-bottom: 15px;
 }
 
-#explicacion{
+#explicacion {
     background-color: #f68282;
     padding: 20px;
     font-family: 'Roboto', sans-serif;
     border-radius: 5px;
-    text-align: justify;
+    text-align: center;
 }
 
-#resultado{
+#resultado {
     background-color: #cfcfcf;
     padding: 20px;
     font-family: monospace;
 }
 
-#enunciado>ul{
+#enunciado>ul {
     text-align: left;
     font-size: 0.9em;
 }
 
+.subtitulo {
+    padding: 10px;
+    margin-bottom: 10px;
+}
 
-body>main>section>article{
-    display: inline-block;
+body>main>article {
+    /* display: inline-block; */
     background-color: #91c8f8;
     border-radius: 4px;
     font-family: sans-serif;
@@ -49,41 +53,63 @@ body>main>section>article{
     height: 150px; */
 }
 
-body>main>section>article>a{
+body>main>article>a {
     text-decoration: none;
     color: #1e1e1e;
     /* width: 100%;
     height: 100%; */
 }
-body>main>section>article>a:visited{
+
+body>main>article>a:visited {
     color: #1e1e1e;
 }
 
-body>main>section>article:hover {
-	background: rgba(0,0,0,0);
-	color: #3a7999;
-	box-shadow: inset 0 0 0 3px #3a7999;
+main>article:hover {
+    background: rgba(0, 0, 0, 0);
+    color: #3a7999;
+    box-shadow: inset 0 0 0 3px #3a7999;
 }
 
-body>main>section>article>a>div#enlaceTemas{
+body>main>article>a>div#enlaceTemas {
     padding: 80px;
 }
 
+main {
+    min-height: 95vh;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* justify-content: space-between; */
+}
 
+main>article {
+    margin: 50px auto 0px;
+
+}
+
+header>h1 {
+    margin: 15px;
+
+}
+
+header {
+    background-color: #00abc2;
+    padding: 15px;
+}
 
 
 
 
 /* ------------ MENU ----------- */
-nav{
+nav {
     margin-bottom: 40px;
     padding: 10px;
 }
-nav>ul>li{
+
+nav>ul>li {
     display: inline-block;
 }
 
-nav ul li a{
+nav ul li a {
     background-color: #007888;
     color: #fff;
     display: block;
@@ -93,36 +119,45 @@ nav ul li a{
 }
 
 /* Hover no funciona sobre bloques de linea */
-nav ul li a:hover{
+nav ul li a:hover {
     background-color: #00abc2;
 }
 
-nav ul li ul{
+nav ul li ul {
     display: none;
     position: absolute;
     min-width: 275px;
 }
 
-nav ul li:hover>ul{
+nav ul li:hover>ul {
     display: block;
 }
 
-nav ul li{
+nav ul li {
     position: relative;
 }
 
-nav ul li ul li ul{
+nav ul li ul li ul {
     top: 0;
     left: 275px;
 }
 
-nav ul li a:not(:last-child)::after{
+nav ul li a:not(:last-child)::after {
     content: " \25bc";
     display: inline;
     font-size: 18px;
 }
 
-nav ul li a:not(:last-child):hover::after{
+nav ul li a:not(:last-child):hover::after {
     content: " \25ba";
 }
+
 /* ------------ /MENU ----------- */
+
+
+
+/* ---- Clases para ejercicios ---- */
+.jQuery-demo-4-clasecss {
+    background-color: #ff8800;
+    font-weight: bold;
+}

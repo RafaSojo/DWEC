@@ -1,0 +1,9 @@
+$(()=>{
+    $("a").mouseover(()=>{
+        $("#capa").addClass("jQuery-demo-4-clasecss");
+    });
+    $("a").mouseout(()=>{
+        $("#capa").removeClass("jQuery-demo-4-clasecss");
+    });
+    $("a").click((evento)=>evento.preventDefault());
+});
