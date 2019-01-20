@@ -74,8 +74,8 @@ body>main>article>a>div#enlaceTemas {
     padding: 80px;
 }
 
-main {
-    min-height: 95vh;
+main:not(.listado) {
+    min-height: 90vh;
 }
 
 main.listado{
