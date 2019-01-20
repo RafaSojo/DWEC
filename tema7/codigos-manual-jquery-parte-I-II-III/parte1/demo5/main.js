@@ -1,6 +1,10 @@
 $(()=>{
-    $("a").click((evento)=>{
-        alert("Has pulsado en el enlace pero se ha cancelado la acción por lo que no serás redirigido.");
-        evento.preventDefault();
+    $("#ocultar").click((event)=>{
+        event.preventDefault();
+        $("#capaefectos").hide("slow");
+    });
+    $("#mostrar").click((event)=>{
+        event.preventDefault();
+        $("#capaefectos").show(1000);
     });
 });

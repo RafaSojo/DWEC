@@ -161,3 +161,9 @@ nav ul li a:not(:last-child):hover::after {
     background-color: #ff8800;
     font-weight: bold;
 }
+
+#capaefectos{
+    background-color: #cc7700;
+    color:#fff;
+    padding:10px
+}

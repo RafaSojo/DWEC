@@ -1,6 +1,6 @@
 $(()=>{
-    $("a").click((evento)=>{
-        alert("Has pulsado en el enlace pero se ha cancelado la acción por lo que no serás redirigido.");
+    $("#enlaceajax").click(function(evento){
         evento.preventDefault();
+        $("#destino").load("index.html", {nombre: "Juan", edad: 32}, ()=> alert("Datos enviados por ajax."));
     });
 });
