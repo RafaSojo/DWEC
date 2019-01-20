@@ -76,9 +76,12 @@ body>main>article>a>div#enlaceTemas {
 
 main {
     min-height: 95vh;
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    /* justify-content: space-between; */
+}
+
+main.listado{
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between; 
 }
 
 main>article {
