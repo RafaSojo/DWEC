@@ -158,21 +158,3 @@ function getEdad(inputs) {
         if (elemento.checked)
             return elemento.value;
 }
-
-
-
-
-/* ------------------------------------------------------------------------------------------- */
-
-
-Reserva.comprobarNombre = function (spanNombre){
-
-};
-
-
-
-
-
-
-
-
