@@ -1,0 +1,6 @@
+{
+  $(() => {
+    $("#milista").fadeOut();
+    $("#milista").fadeIn();
+  });
+}

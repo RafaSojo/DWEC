@@ -1,5 +1,4 @@
 {
-  //creo el plugin cuentaCaracteres
   jQuery.fn.cuentaCaracteres = function () {
     this.each(function () {
       elem = $(this);
@@ -16,7 +15,6 @@
     });
     return this;
   };
-
   $(() => {
     $("textarea").cuentaCaracteres();
   });
