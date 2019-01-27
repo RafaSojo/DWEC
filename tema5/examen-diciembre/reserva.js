@@ -1,13 +1,4 @@
-function Reserva(
-    nombre,
-    correo,
-    fechaLlegada,
-    horaLlegada,
-    numeroNoches,
-    numeroPersonas,
-    servicioRestaurante,
-    edadCliente
-  ) {
+function Reserva(nombre, correo, fechaLlegada, horaLlegada, numeroNoches, numeroPersonas, servicioRestaurante, edadCliente) {
     this.nombre = nombre;
     this.correo = correo;
     this.fechaLlegada = this.setFecha(fechaLlegada);
@@ -17,32 +8,30 @@ function Reserva(
     this.servicioRestaurante = this.setServicioRestaurante(servicioRestaurante);
     this.edadCliente = edadCliente;
     this.id = this.incrementarId();
-  }
-  
-  Reserva.prototype.incrementarId = (function() {
+}
+
+Reserva.prototype.incrementarId = (function () {
     let id = 1;
-    return function() {
-      return id++;
+    return function () {
+        return id++;
     };
-  })();
-  
-  Reserva.prototype.setServicioRestaurante = function(servicioRestaurante) {
+})();
+
+Reserva.prototype.setServicioRestaurante = function (servicioRestaurante) {
     if (servicioRestaurante.length > 1) {
-      let salida = "";
-      servicioRestaurante.forEach((element, index) => {
-        index === servicioRestaurante.length - 1
-          ? (salida += element.value)
-          : (salida += element.value + ", ");
-      });
-      return salida;
+        let salida = "";
+        servicioRestaurante.forEach((element, index) => {
+            (index === servicioRestaurante.length - 1) ? (salida += element.value) : (salida += element.value + ", ");
+        });
+        return salida;
     } else if (servicioRestaurante.length === 1) {
-      return servicioRestaurante[0].value;
+        return servicioRestaurante[0].value;
     } else {
-      return "Ninguno";
+        return "Ninguno";
     }
-  };
-  
-  Reserva.prototype.mostrar = function() {
+};
+
+Reserva.prototype.mostrar = function () {
     let html = `<!DOCTYPE html>
       <html lang="es">
       <head>
@@ -73,37 +62,34 @@ function Reserva(
     ventana.document.open();
     ventana.document.write(html);
     ventana.document.close();
-  };
-  
-  Reserva.prototype.setFecha = function(fechaLlegada) {
-    if (!(fechaLlegada instanceof Date)) {
-      throw new Error("Fecha no valida");
-    }
-    return fechaLlegada;
-  };
-  
+};
 
-  Reserva.prototype.formatoFecha = function() {
+Reserva.prototype.setFecha = function (fechaLlegada) {
+    if (!(fechaLlegada instanceof Date)) 
+        throw new Error("Fecha no valida");
+    return fechaLlegada;
+};
+
+
+Reserva.prototype.formatoFecha = function () {
     let opciones = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric"
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
     };
     return this.fechaLlegada.toLocaleDateString("es-ES", opciones);
-  };
-  
-  Reserva.prototype.calcularDias = function() {
+};
+
+Reserva.prototype.calcularDias = function () {
     let fechaActualEnMs = Date.now();
     let fechaLlegada = Date.parse(this.fechaLlegada);
     let fechaRestante = fechaLlegada - fechaActualEnMs;
     let diasSinTruncar = fechaRestante / 1000 / 60 / 60 / 24;
     let dias = Math.trunc(fechaRestante / 1000 / 60 / 60 / 24);
-    if (dias < 0) {
-      throw new Error("La fecha introducida es anterior a la fecha actual");
-    }
-    if (diasSinTruncar > 0 && diasSinTruncar < 1) {
-      return 1;
-    }
+    if (dias < 0) 
+        throw new Error("La fecha introducida es anterior a la fecha actual");
+    if (diasSinTruncar > 0 && diasSinTruncar < 1) 
+        return 1;
     return dias;
-  };
+};

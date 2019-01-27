@@ -20,7 +20,7 @@
       validaSubmit();
     });
 
-    validarAction(); // valida inputs cuando se active el evento blur
+    validarAction(); // cuando se recibe el blur
   };
 
   let patrones = {
@@ -47,11 +47,10 @@
   let validador = {
     test(patron, campo, elementoMostrarMensaje) {
       let regex = new RegExp(patron[0]);
-      if (!regex.test(campo.value)) {
+      if (!regex.test(campo.value))
         elementoMostrarMensaje.textContent = patron[1];
-      } else {
+      else
         validador.limpiar(elementoMostrarMensaje, spanError);
-      }
     },
     limpiar(spanElemento, spanError) {
       spanElemento.textContent = "";
@@ -60,41 +59,25 @@
   };
 
   let validateInputs = function (element, spanIndex) {
-    if (element.getAttribute("class")) {
-      validador.test(
-        patrones[element.getAttribute("class")],
-        element,
-        spans[spanIndex]
-      );
-    }
+    if (element.getAttribute("class"))
+      validador.test(patrones[element.getAttribute("class")], element, spans[spanIndex]);
   };
 
   let validarAction = function (action) {
     allinputs.forEach(function (element, index) {
-      if (action === "trigger") {
-        element.addEventListener(
-          "blur",
-          function () {
-            validateInputs(element, index);
-          }());
-      } else {
-        element.addEventListener(
-          "blur", () => validateInputs(element, index));
-      }
+      if (action === "trigger")
+        element.addEventListener("blur", function () { validateInputs(element, index); }());
+      else
+        element.addEventListener("blur", () => validateInputs(element, index));
     });
-
   };
 
   let radioPulsado = function () {
-    return Array.from(
-      document.querySelectorAll("input[type='radio']:checked")
-    )[0].value;
+    return Array.from(document.querySelectorAll("input[type='radio']:checked"))[0].value;
   };
 
   let checkPulsado = function () {
-    return Array.from(
-      document.querySelectorAll("input[type='checkbox']:checked")
-    );
+    return Array.from(document.querySelectorAll("input[type='checkbox']:checked"));
   };
 
   let obtenerIndiceLlenos = function () {
@@ -102,14 +85,12 @@
     spans.forEach((element, index) => {
       if (element.textContent !== "")
         indiceSpanLlenos.push(index);
-      
     });
     return indiceSpanLlenos;
   }
 
   let validaSubmit = function () {
     validarAction("trigger")
-
     if (obtenerIndiceLlenos().length > 0) {
       allinputs[obtenerIndiceLlenos()[0]].focus();
       return;
@@ -133,5 +114,6 @@
       spanError.textContent = e.message;
     }
   };
+
   window.addEventListener("load", init);
 }
