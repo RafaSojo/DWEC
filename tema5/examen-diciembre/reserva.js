@@ -6,7 +6,8 @@ function Reserva(
     numeroNoches,
     numeroPersonas,
     servicioRestaurante,
-    edadCliente) {
+    edadCliente
+  ) {
     this.nombre = nombre;
     this.correo = correo;
     this.fechaLlegada = this.setFecha(fechaLlegada);

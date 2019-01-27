@@ -78,7 +78,8 @@
             validateInputs(element, index);
           }());
       } else {
-        element.addEventListener("blur", () => validateInputs(element, index));
+        element.addEventListener(
+          "blur", () => validateInputs(element, index));
       }
     });
 
