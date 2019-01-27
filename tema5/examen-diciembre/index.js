@@ -1,99 +1,136 @@
 {
-    let inputNombre, inputEmail, inputFecha, inputHora, inputNoches, inputPersonas, inputDesayuno, inputAlmuerzo, inputCena,
-        inputsEdad, spanNombre, spanEmail, spanFecha, spanHora, spanNoches, spanPersonas, spanEdad, estructura;
+  let inputsText;
+  let inputsMail;
+  let inputsNumber;
+  let inputsTime;
+  let inputsDate;
+  let spans;
+  let form;
+  let spanError;
+  let allinputs;
 
-    function init() {
-        // Cargamos los inputs
-        inputNombre = document.getElementById('nombre');
-        inputEmail = document.getElementById('email');
-        inputFecha = document.getElementById('fecha');
-        inputHora = document.getElementById('hora');
-        inputNoches = document.getElementById('noches');
-        inputPersonas = document.getElementById('personas');
-        inputDesayuno = document.getElementById('desayuno');
-        inputAlmuerzo = document.getElementById('almuerzo');
-        inputCena = document.getElementById('cena');
-        inputsEdad = document.getElementsByName('edad');
+  let init = function () {
+    form = document.getElementsByTagName("form")[0];
+    allinputs = Array.from(document.querySelectorAll("input:not([type='submit']):not([type='checkbox']):not([type='radio'])"));
+    spanError = Array.from(document.getElementById("spanError"));
+    spans = Array.from(document.querySelectorAll("body form span"));
 
-        // Cargamos los span
-        spanNombre = document.getElementById('spanNombre');
-        spanEmail = document.getElementById('spanEmail');
-        spanFecha = document.getElementById('spanFecha');
-        spanHora = document.getElementById('spanHora');
-        spanNoches = document.getElementById('spanNoches');
-        spanPersonas = document.getElementById('spanPersonas');
-        spanEdad = document.getElementById('spanEdad');
+    form.addEventListener("submit", ev => {
+      ev.preventDefault();
+      validaSubmit();
+    });
 
-        // Ponemos los listeners
-        document.getElementById('enviar').addEventListener('click', comprobarFormulario);
-        // inputNombre.addEventListener('blur', checkNombre);
-        // inputEmail.addEventListener('blur', checkEmail);
-        // inputFecha.addEventListener('blur', checkFecha);
-        // inputHora.addEventListener('blur', checkHora);
-        // inputNoches.addEventListener('blur', checkNoches);
-        // inputPersonas.addEventListener('blur', inputPersonas);
+    validarAction(); // valida inputs cuando se active el evento blur
+  };
 
-        estructura = [
-            [inputsEdad, spanEdad, Reserva.checkEdad],
-            [inputPersonas, spanPersonas, Reserva.checkPersonas],
-            [inputNoches, spanNoches, Reserva.checkNoches],
-            [inputHora, spanHora, Reserva.checkHora],
-            [inputFecha, spanFecha, Reserva.checkFecha],
-            [inputEmail, spanEmail, Reserva.checkEmail],
-            [inputNombre, spanNombre, Reserva.checkNombre]
-        ]
+  let patrones = {
+    nombre: [
+      /^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ]+[/\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ])+[/\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ])?$/g,
+      "Al menos nombre y apellido"
+    ],
+    hora: [
+      /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/g,
+      "formato válido hh:mm"
+    ],
+    correo: [
+      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+      "Formato de correo no válido"
+    ],
+    number: [/^[1-9]{1,}$/, "El número tiene que ser mayor que 0."],
 
+    fecha: [
+      /^(\d{4})(\/|-)(\d{1,2})(\/|-)(\d{1,2})$/,
+      "El formato de fecha es yyyy-mm-dd."
+    ]
+  };
 
+  let validador = {
+    test(patron, campo, elementoMostrarMensaje) {
+      let regex = new RegExp(patron[0]);
+      if (!regex.test(campo.value)) {
+        elementoMostrarMensaje.textContent = patron[1];
+      } else {
+        validador.limpiar(elementoMostrarMensaje, spanError);
+      }
+    },
+    limpiar(spanElemento, spanError) {
+      spanElemento.textContent = "";
+      spanError.textContent = "";
+    }
+  };
+
+  let validateInputs = function (element, spanIndex) {
+    if (element.getAttribute("class")) {
+      validador.test(
+        patrones[element.getAttribute("class")],
+        element,
+        spans[spanIndex]
+      );
+    }
+  };
+
+  let validarAction = function (action) {
+    allinputs.forEach(function (element, index) {
+      if (action === "trigger") {
+        element.addEventListener(
+          "blur",
+          function () {
+            validateInputs(element, index);
+          }());
+      } else {
+        element.addEventListener("blur", () => validateInputs(element, index));
+      }
+    });
+
+  };
+
+  let radioPulsado = function () {
+    return Array.from(
+      document.querySelectorAll("input[type='radio']:checked")
+    )[0].value;
+  };
+
+  let checkPulsado = function () {
+    return Array.from(
+      document.querySelectorAll("input[type='checkbox']:checked")
+    );
+  };
+
+  let obtenerIndiceLlenos = function () {
+    let indiceSpanLlenos = [];
+    spans.forEach((element, index) => {
+      if (element.textContent !== "")
+        indiceSpanLlenos.push(index);
+      
+    });
+    return indiceSpanLlenos;
+  }
+
+  let validaSubmit = function () {
+    validarAction("trigger")
+
+    if (obtenerIndiceLlenos().length > 0) {
+      allinputs[obtenerIndiceLlenos()[0]].focus();
+      return;
     }
 
-    function comprobarFormulario(event) {
-        event.preventDefault();
-        let elementoFoco = false;
+    spanError.textContent = "";
 
-        estructura.forEach(element => {
-            // console.log(element);
-            try {
-                element[2](element[0]);
-            } catch (error) {
-                // console.log(error);
-                element[1].innerText = error;
-                if (element[1] === estructura[0][1])
-                    elementoFoco = element[0][0];
-                else
-                    elementoFoco = element[0];
-            }
-
-        });
-
-        // En caso de error mostramos el foco, si no, todo ha ido correcto y creamos el objeto
-        if (elementoFoco != false) {
-            elementoFoco.focus();
-            return;
-        }
-
-        let reserva = new Reserva(inputNombre.value, inputEmail.value, inputFecha.value, inputHora.value, inputNoches.value,
-            inputPersonas.value, inputDesayuno.checked, inputAlmuerzo.checked, inputCena.checked, getEdad(inputsEdad));
-            // console.log(getEdad(inputsEdad));
-        // console.log(reserva); // ## DEBUG ##
-        reserva.mostrar();
-        resetInputs();
+    try {
+      let reserva = new Reserva(
+        allinputs[0].value,
+        allinputs[1].value,
+        new Date(allinputs[2].value),
+        allinputs[3].value,
+        allinputs[4].value,
+        allinputs[5].value,
+        checkPulsado(),
+        radioPulsado()
+      );
+      reserva.mostrar();
+    } catch (e) {
+      spanError.textContent = e.message;
     }
-
-    function resetInputs() {
-        inputNombre.value = "";
-        inputEmail.value = "";
-        inputFecha.value = "";
-        inputHora.value = "";
-        inputNoches.value = "";
-        inputPersonas.value = "";
-        inputDesayuno.checked = false;
-        inputAlmuerzo.checked = false;
-        inputCena.checked = false;
-        inputsEdad.forEach((e) => {
-            e.checked = false;
-        });
-    }
-
-
-    window.addEventListener('load', init);
+  };
+  window.addEventListener("load", init);
 }
