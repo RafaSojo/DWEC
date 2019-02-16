@@ -5,6 +5,7 @@ $arrayAlumnos = array(
     array('nombre' => 'Francisco', 'apellidos' => 'Ramirez Ruiz'),
     array('nombre' => 'Angelo', 'apellidos' => 'Barbara'),
     array('nombre' => 'Rafael', 'apellidos' => 'Garcia Zurita'),
+    array('nombre' => 'Marcos', 'apellidos' => 'Gallardo'),
 );
 
 function getNombres($arrayAlumnos, $consulta)
@@ -12,7 +13,7 @@ function getNombres($arrayAlumnos, $consulta)
 
     $arrayAlumnosResultado = array();
     foreach ($arrayAlumnos as $key => $alumno) {
-        if (preg_match('/' . $consulta . '/i', $alumno['nombre']) || preg_match('/' . $consulta . '/i', $alumno['apellidos'])) {
+        if (preg_match('/^' . $consulta . '/i', $alumno['nombre']) || preg_match('/^' . $consulta . '/i', $alumno['apellidos'])) {
             $arrayAlumnosResultado[] = $alumno;
         }
     }
