@@ -1,10 +1,11 @@
 {
     function init() {
 
-        $("#selectHabilidades").click(function () {
+        $("#selectHabilidades").change(function () {
             // let arrayHabilidades = [];
             // $("ul").css("display", "none");
-            let id = $(this).attr("id");
+            let id = $($(this)[0].selectedOptions[0]).attr("id");
+            console.log(id);
             let json = getFicheroJSON(id);
             mostrarHabilidades(json);
         });
