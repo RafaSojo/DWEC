@@ -13,29 +13,25 @@ jQuery.fn.revisaFormulario = function () {
         correo;
 
     $textArea.prop("disabled", true);
-    focusedo = false;
+    focused = false;
     
     $('input[type="submit"]').click((e) => {
         e.preventDefault();
-        focusedo = false;
+        focused = false;
         $elementoAFocusear = "";
         $inputs.blur();
         if ($elementoAFocusear != "")
             $elementoAFocusear.focus();
         
-        // $.post("php/servidor.php", {
-        //     nombre: nombre,
-        //     apellido: apellido,
-        //     correo: correo
-        // }, function (respuesta) {
-        //     $textArea.text(respuesta);
-        // }).done(function(){
-        //     console.log("Éxito");
-        // }).fail(function () {
-        //     $textArea.text("La conexión por post con el servidor no se pudo realizar.");
-        // }).always(function () {
-        //     console.log("Esto se va a ejecutar siempre");
-        // })
+        $.post("foo/rest.php", {
+            nombre: nombre,
+            apellido: apellido,
+            correo: correo
+        }, function (respuesta) {
+            $textArea.text(respuesta);
+        }).fail(function () {
+            $textArea.text("No se pudo enviar el formulario.");
+        })
     });
 
     $inputs.blur((e) => {
@@ -45,9 +41,9 @@ jQuery.fn.revisaFormulario = function () {
                 'background': '#ffDEDE',
                 'color': '#ff0000'
             })
-            if (!focusedo) {
+            if (!focused) {
                 $elementoAFocusear = e.delegateTarget;
-                focusedo = true;
+                focused = true;
             }
         } else{
             $(e.delegateTarget).attr("tipo") == 'nombre'?nombre=$(e.delegateTarget).val():"";
