@@ -14,7 +14,7 @@
                     success: function (data) {
                         cadena += ", Éxito";
                         $estadoPeticion.val(cadena);
-                        $("#scroller").text(data);
+                        $resultadoPeticion.val(data);
                     },
                     complete: function () {
                         cadena += ", Completada";
@@ -35,7 +35,7 @@
                     $estadoPeticion.val(cadena);
                 })
                 .always(function () {
-                    cadena += ", Finalizado (always)":
+                    cadena += ", Finalizado (always)";
                     $estadoPeticion.val(cadena);
                 })
         
