@@ -1,17 +1,24 @@
 {
-    $contenido = $("#contenido");
-
-    function pintaContenido(json) {
-        $contenido.html('');
-        json.array.forEach(function (element, index) {
-            $contenido.push('<h1>' + index + '</h1>');
-            if (Array.isArray(element)) {
-                $contenido.push('<ul>');
-                element.forEach(elementoArray => $contenido.push('<li>' + elementoArray + '</li>'));
-                $contenido.push('</ul>');
+    // $contenido = $("#contenido");
+// var a;
+    function pintaContenido(data) {
+        // $contenido.html('');
+        // a = data;
+        let arrayKeys = Object.keys(data);
+        let html = '';
+        for(let i=0;i<arrayKeys.length;i++){
+            elemento = data[arrayKeys[i]];
+            console.log(elemento);
+            html += '<h1>' + arrayKeys[i] + '</h1>';
+            if (Array.isArray(elemento)) {
+                html += '<ul>';
+                elemento.forEach(elementoArray => html +='<input type="checkbox">' + elementoArray + '<br>');
+               html += '</ul>';
             } else
-                $contenido.push('<p>' + element + '</p>');
-        });
+                html += '<p>' + elemento + '</p>';
+            $("#contenido").html(html);
+        }
+
     }
 
     function init() {
