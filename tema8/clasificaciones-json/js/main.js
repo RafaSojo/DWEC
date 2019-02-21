@@ -18,13 +18,13 @@
 
 
         $("#json1").click(function () {
-            pintaContenido($.getJSON('https://rafasojo.github.io/DWEC/tema8/clasificaciones-json/json/habilidades-vida.json'));
+            $.getJSON('https://rafasojo.github.io/DWEC/tema8/clasificaciones-json/json/habilidades-vida.json').done(data => pintaContenido(data));
         });
         $("#json2").click(function () {
-            pintaContenido($.getJSON('https://rafasojo.github.io/DWEC/tema8/clasificaciones-json/json/perfiles-it.json'));
+            $.getJSON('https://rafasojo.github.io/DWEC/tema8/clasificaciones-json/json/perfiles-it.json').done(data => pintaContenido(data));
         });
         $("#json3").click(function () {
-            pintaContenido($.getJSON('https://rafasojo.github.io/DWEC/tema8/clasificaciones-json/json/tipos-desarrolladores.json'));
+            $.getJSON('https://rafasojo.github.io/DWEC/tema8/clasificaciones-json/json/tipos-desarrolladores.json').done(data => pintaContenido(data));
         });
 
     }
