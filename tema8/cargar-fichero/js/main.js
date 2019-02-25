@@ -3,39 +3,38 @@
     $(function (){
         $estadoPeticion = $('#estadoPeticion');
         $resultadoPeticion = $('#resultadoPeticion');
+        $resultadoPeticion.html('');
         $('#cargar').click(function () {
             let cadena = "";
             $.get({
                     url: $('#urlACargar').val(),    
                     error: function () {
-                        cadena = "No Inicializada";
+                        cadena = " .error: No Inicializada\n";
                         $estadoPeticion.val(cadena);
                     },
                     success: function (data) {
-                        cadena += ", Éxito";
+                        cadena += " .success: éxito\n";
                         $estadoPeticion.val(cadena);
                         $resultadoPeticion.val(data);
                     },
                     complete: function () {
-                        cadena += ", Completada";
+                        cadena += " .complete: completada\n";
                         $estadoPeticion.val(cadena);
                     },
                     beforeSend: function () {
-                        cadena = "Antes de enviar";
+                        cadena = " .beforeSend: Antes de enviar\n";
                         $estadoPeticion.val(cadena);
                     }
-    
-    
                 }).done(function () {
-                    cadena += ", Realizado (done)";
+                    cadena += " .done: Realizado\n";
                     $estadoPeticion.val(cadena);
                 })
                 .fail(function () {
-                    cadena += ", Fallo (fail)";
+                    cadena += " .fail: fallo\n";
                     $estadoPeticion.val(cadena);
                 })
                 .always(function () {
-                    cadena += ", Finalizado (always)";
+                    cadena += " .always: finalizado\n";
                     $estadoPeticion.val(cadena);
                 })
         
