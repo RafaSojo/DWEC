@@ -3,13 +3,13 @@
     $(function (){
         $estadoPeticion = $('#estadoPeticion');
         $resultadoPeticion = $('#resultadoPeticion');
-        $resultadoPeticion.html('');
         $('#cargar').click(function () {
             let cadena = "";
+            $resultadoPeticion.val('');
             $.get({
                     url: $('#urlACargar').val(),    
                     error: function () {
-                        cadena = " .error: No Inicializada\n";
+                        cadena = " .error: no Inicializada\n";
                         $estadoPeticion.val(cadena);
                     },
                     success: function (data) {
@@ -22,11 +22,11 @@
                         $estadoPeticion.val(cadena);
                     },
                     beforeSend: function () {
-                        cadena = " .beforeSend: Antes de enviar\n";
+                        cadena = " .beforeSend: antes de enviar\n";
                         $estadoPeticion.val(cadena);
                     }
                 }).done(function () {
-                    cadena += " .done: Realizado\n";
+                    cadena += " .done: realizado\n";
                     $estadoPeticion.val(cadena);
                 })
                 .fail(function () {
@@ -37,8 +37,8 @@
                     cadena += " .always: finalizado\n";
                     $estadoPeticion.val(cadena);
                 })
-        
         });
+        
     });
 
 
