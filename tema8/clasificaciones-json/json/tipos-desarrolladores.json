@@ -1,5 +1,5 @@
 {
-    "Font-end": ["HTML","CSS","JavaScript"],
+    "Font-end": ["HTML", "CSS", "JavaScript"],
     "Back-end": ["ASP.NET", "PHP", "Ruby", "Python", "Node.js", "Java"],
     "Full stack": ["Lenguajes de Front-end", "Back-end", "Administrar sistemas"]
 }

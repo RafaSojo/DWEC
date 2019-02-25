@@ -8,7 +8,6 @@
     padding: 0;
 }
 
-
 #enunciado {
     background-color: #FF9800;
     padding: 20px;
@@ -44,20 +43,15 @@
 }
 
 body>main>article {
-    /* display: inline-block; */
     background-color: #91c8f8;
     border-radius: 4px;
     font-family: sans-serif;
     font-size: 3em;
-    /* width: 200px;
-    height: 150px; */
 }
 
 body>main>article>a {
     text-decoration: none;
     color: #1e1e1e;
-    /* width: 100%;
-    height: 100%; */
 }
 
 body>main>article>a:visited {
@@ -78,10 +72,10 @@ main:not(.listado) {
     min-height: 90vh;
 }
 
-main.listado{
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: space-between; 
+main.listado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 main>article {
@@ -98,9 +92,6 @@ header {
     background-color: #00abc2;
     padding: 15px;
 }
-
-
-
 
 /* ------------ MENU ----------- */
 nav {
@@ -157,16 +148,14 @@ nav ul li a:not(:last-child):hover::after {
 
 /* ------------ /MENU ----------- */
 
-
-
 /* ---- Clases para ejercicios ---- */
 .jQuery-demo-4-clasecss {
     background-color: #ff8800;
     font-weight: bold;
 }
 
-#capaefectos{
+#capaefectos {
     background-color: #cc7700;
-    color:#fff;
-    padding:10px
+    color: #fff;
+    padding: 10px
 }
