@@ -1,5 +1,4 @@
 {
-
     function init() {
         $('form').examen();
         console.log(tester.init('a', 'nombre'))
