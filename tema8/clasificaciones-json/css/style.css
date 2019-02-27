@@ -2,3 +2,11 @@
     background-color: beige;
     min-height: 100px;
 }
+
+body{
+    text-align: center;
+}
+
+select{
+    margin: 30px;
+}
