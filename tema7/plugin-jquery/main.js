@@ -1,19 +1,16 @@
 {
 
     function init() {
-        $('form').revisaFormulario();
-        console.log(tester.init('nombre', 'nombre'))
+        $('form').examen();
+        console.log(tester.init('a', 'nombre'))
+        console.log(tester.init('Juan', 'nombre'))
     }
     $(init);
     let tester = (function () {
-        let mensaje;
-
         function init(texto, tipo) {
-            mensaje = "Incorrecto";
-            if (patrones[tipo].test(texto)) {
-                mensaje = "Correcto"
-            }
-            return mensaje;
+            if (patrones[tipo].test(texto)) 
+                return texto+": Correcto"
+            return texto+": Incorrecto";
         }
         return {
             init
