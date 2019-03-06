@@ -4,7 +4,6 @@ const patrones = {
     correo: /^[a-zA-Zñ]{1,10}([.][a-zA-Zñ]{1,10}){0,3}[@][a-z]{1,6}([\.][a-z]{1,4}){1,4}$/
 }
 
-
 jQuery.fn.examen = function () {
     let $inputs = $("input[type='text']", $(this));
     let $textArea = $('#textarea');
@@ -13,7 +12,7 @@ jQuery.fn.examen = function () {
     $textArea.prop("disabled", true);
     focused = false;
 
-    $('form').on('submit',(e) => {
+    $('form').on('submit', (e) => {
         $textArea.text(""); // Resetear textarea
         e.preventDefault();
         focused = false;
@@ -21,7 +20,7 @@ jQuery.fn.examen = function () {
         $inputs.blur();
         if ($elementoFocus != "")
             $elementoFocus.focus();
-        if(focused == false){
+        if (focused == false) {
             $.post("https://daw.rafasojo.es/dwec/sugerencias/sugerencias.php", {
                 nombre: nombre,
                 apellido: apellido,
