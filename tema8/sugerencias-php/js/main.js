@@ -2,7 +2,7 @@
 
   let $resultado;
   $(function () {
-    $('#buscador').bind('input', function () {
+    $('#buscador').on('input', function () {
       let valor = this.value;
       if (valor.length == 0) {
         $resultado.removeClass('fondo-gris');
