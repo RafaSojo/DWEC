@@ -1,5 +1,4 @@
 {
-
   let $resultado;
   $(function () {
     $('#buscador').on('input', function () {
