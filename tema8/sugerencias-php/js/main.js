@@ -1,29 +1,29 @@
+{
 
-$(function () {
- $('#buscador').bind('input',sugerencia);
-});
-
-
-function sugerencia(event){
-    let valor = this.value;
-
-    $resultado = $('#resultado');
-
-    if(valor.length == 0){
+  let $resultado;
+  $(function () {
+    $('#buscador').bind('input', function () {
+      let valor = this.value;
+      if (valor.length == 0) {
         $resultado.removeClass('fondo-gris');
         $resultado.html('');
         return;
-    }else{
+      } else {
         $resultado.addClass('fondo-gris');
-    }
-
-    $.ajax({
+      }
+  
+      $.ajax({
         type: "POST",
         url: 'https://daw.rafasojo.es/dwec/sugerencias/sugerencias.php',
-        data: {'texto':valor},
-        // success: success,
-        // dataType: 'text/html'
-      }).done(function (data){
+        data: {
+          'texto': valor
+        },
+      }).done(function (data) {
         $resultado.html(data);
       });
+    });
+    $resultado = $('#resultado');
+  });
+
+
 }
