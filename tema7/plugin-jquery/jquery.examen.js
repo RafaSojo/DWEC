@@ -62,8 +62,7 @@ jQuery.fn.examen = function (estilos2) {
                 'color': 'black'
             });
         }
-    });
-    $inputs.focus((e) => {
+    }).focus((e) => {
         $(e.target).css({
             color: "initial",
             background: "initial",
