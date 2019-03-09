@@ -16,26 +16,23 @@ jQuery.fn.examen = function (estilos2) {
     let $inputs = $("input[type='text']", $(this));
     let $textArea = $('textarea', $(this));
     let $elementoFocus = "";
-    let nombre, apellido, correo;
     $textArea.prop("disabled", true);
     focused = false;
 
-    $(this).on('submit', (e) => {
+    $(this).on('submit', function (e) {
         $textArea.text("");
         $textArea.css({'border':'1px solid rgb(169, 169, 169)'})
         e.preventDefault();
+
         focused = false;
         $elementoFocus = "";
         $inputs.blur();
         if ($elementoFocus != "")
             $elementoFocus.focus();
         if (focused == false) {
-            $.post("https://daw.rafasojo.es/dwec/sugerencias/sugerencias.php", {
-                nombre: nombre,
-                apellido: apellido,
-                correo: correo,
-                ejercicio: '9' // -> Para funcionamiento interno del php
-            }, function (respuesta) {
+            $.post("https://daw.rafasojo.es/dwec/sugerencias/sugerencias.php", 
+            $(this).serialize()+'&ejercicio=9',
+            function (respuesta) {
                 $textArea.text(respuesta);
             }).fail(function () {
                 $textArea.text("No se pudo enviar el formulario.");
@@ -45,25 +42,23 @@ jQuery.fn.examen = function (estilos2) {
     });
 
 
-    $inputs.blur((e) => {
-        if (!patrones[$(e.delegateTarget).attr("tipo")].test($(e.delegateTarget).val())) {
-            $(e.delegateTarget).css(estilos);
+    $inputs.blur(function (){
+        let $input = $(this);
+        if (!patrones[$input.attr("tipo")].test($input.val())) {
+            $input.css(estilos);
             if (!focused) {
-                $elementoFocus = e.delegateTarget;
+                $elementoFocus = $input;
                 focused = true;
             }
         } else {
-            $(e.delegateTarget).attr("tipo") == 'nombre' ? nombre = $(e.delegateTarget).val() : "";
-            $(e.delegateTarget).attr("tipo") == 'apellidos' ? apellido = $(e.delegateTarget).val() : "";
-            $(e.delegateTarget).attr("tipo") == 'correo' ? correo = $(e.delegateTarget).val() : "";
-            $(e.delegateTarget).css({
+            $input.css({
                 'border': '1px solid black',
                 'background': 'white',
                 'color': 'black'
             });
         }
-    }).focus((e) => {
-        $(e.target).css({
+    }).focus(function () {
+        $(this).css({
             color: "initial",
             background: "initial",
             border: "initial"
