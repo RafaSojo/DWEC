@@ -1,8 +1,8 @@
 {
     function init() {
         $('form').examen();
-        console.log(tester.init('a', 'nombre'))
-        console.log(tester.init('Juan', 'nombre'))
+        // console.log(tester.init('a', 'nombre'))
+        // console.log(tester.init('Juan', 'nombre'))
     }
     $(init);
     let tester = (function () {
