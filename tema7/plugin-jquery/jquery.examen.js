@@ -4,6 +4,7 @@ const patrones = {
     correo: /^[a-zA-Zñ]{1,10}([.][a-zA-Zñ]{1,10}){0,3}[@][a-z]{1,6}([\.][a-z]{1,4}){1,4}$/
 }
 
+
 jQuery.fn.examen = function (estilos2) {
     let estilos = {
         color: "#ff0000",
@@ -11,8 +12,21 @@ jQuery.fn.examen = function (estilos2) {
         border: "2px solid #ffD3D7"
     };
 
-    $.extend(estilos, estilos2);
+
+    let tester = (function () {
+        function init(texto, tipo) {
+            if (patrones[tipo].test(texto))
+                return texto + ": Correcto"
+            return texto + ": Incorrecto";
+        }
+        return {
+            init
+        }
+    })();
     
+
+    $.extend(estilos, estilos2);
+
     let $inputs = $("input[type='text']", $(this));
     let $textArea = $('textarea', $(this));
     let $elementoFocus = "";
@@ -21,7 +35,9 @@ jQuery.fn.examen = function (estilos2) {
 
     $(this).on('submit', function (e) {
         $textArea.text("");
-        $textArea.css({'border':'1px solid rgb(169, 169, 169)'})
+        $textArea.css({
+            'border': '1px solid rgb(169, 169, 169)'
+        })
         e.preventDefault();
 
         focused = false;
@@ -30,19 +46,21 @@ jQuery.fn.examen = function (estilos2) {
         if ($elementoFocus != "")
             $elementoFocus.focus();
         if (focused == false) {
-            $.post("https://daw.rafasojo.es/dwec/sugerencias/sugerencias.php", 
-            $(this).serialize()+'&ejercicio=9',
-            function (respuesta) {
-                $textArea.text(respuesta);
-            }).fail(function () {
+            $.post("https://daw.rafasojo.es/dwec/sugerencias/sugerencias.php",
+                $(this).serialize() + '&ejercicio=9',
+                function (respuesta) {
+                    $textArea.text(respuesta);
+                }).fail(function () {
                 $textArea.text("No se pudo enviar el formulario.");
             });
-            $textArea.css({'border':'4px solid green'})
+            $textArea.css({
+                'border': '4px solid green'
+            })
         }
     });
 
 
-    $inputs.blur(function (){
+    $inputs.blur(function () {
         let $input = $(this);
         if (!patrones[$input.attr("tipo")].test($input.val())) {
             $input.css(estilos);
