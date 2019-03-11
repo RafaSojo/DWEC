@@ -3,5 +3,4 @@
         $('form').examen();
     }
     $(init);
-
 }
